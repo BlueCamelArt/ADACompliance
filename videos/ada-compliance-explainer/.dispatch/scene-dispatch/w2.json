@@ -1,0 +1,52 @@
+{
+  "worker_id": "w2",
+  "scene_ids": [
+    "scene_4"
+  ],
+  "scenes": {
+    "scene_4": {
+      "start_s": 19.797,
+      "effects": [
+        "svg-path-draw",
+        "counting-dynamic-scale"
+      ],
+      "rule_paths": [
+        "/home/user/ADACompliance/.agents/skills/hyperframes-animation/rules/svg-path-draw.md",
+        "/home/user/ADACompliance/.agents/skills/hyperframes-animation/rules/counting-dynamic-scale.md"
+      ],
+      "assetCandidates": [],
+      "estimatedDuration_s": 6.016,
+      "voicePath": "assets/voice/scene_4.wav",
+      "wordsPath": "",
+      "design_chunks": {
+        "tokens_file": "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/tokens.css",
+        "easings_file": "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/easings.js",
+        "voice_file": "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/voice.md",
+        "hints_file": "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/composition-hints.md",
+        "type_roles_file": "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/type-roles.md",
+        "components": [
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/chip.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/divider-loud.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/hero.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/paper-grain-overlay.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/pill-yes.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/pinned-card.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/process-step.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/quote-panel.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/safety-pin.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/scribble-note.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/stamp.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/stat-counter.html"
+        ]
+      },
+      "creative_brief": "Accessibility isn't a tax on the business — it's a multiplier for every visitor and every search result. Composition: Centered (climax-style for the \"so what\" beat). One large hand-drawn glyph — an upward arrow rising through a magnifying-glass outline — sits centered at ~50% of frame height, drawn via `svg-path-draw`. A `stat-counter` to its lower-right ticks an SEO-style metric upward. Minimal supporting chrome: one mono eyebrow \"RESULT 04\" top-left. Type: Hero glyph carries the visual weight (no competing headline); a short display-tier line (\"better for every visitor\") sits beneath it in restrained scale — 3:1 under the glyph's visual footprint. Secondary accent color (`--brand-secondary` gold) marks the arrow stroke as the sole accent moment in the film bound to this \"rising\" semantic. Motion: Macro: slow dolly-in culminating on the glyph. Secondary: the arrow draws upward via `svg-path-draw` synced to the counter's count-up (`counting-dynamic-scale`), one correlated beat — not two independent animations. Glyph holds with subtle multiplicative breathing (±1-2%) as the sole live element once settled. Eye destination: the rising arrow hands off into Scene 5's CTA stamp via `cut-the-curve` (break, cross-dissolve).\n\n",
+      "local_start_s": 0,
+      "visual_id": "scene_4"
+    }
+  },
+  "start_s": 19.797,
+  "duration_s": 6.016,
+  "composition_id": "scene_4",
+  "composition_file": "compositions/scene_4.html",
+  "kind": "scene"
+}

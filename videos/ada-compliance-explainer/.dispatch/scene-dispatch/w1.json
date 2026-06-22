@@ -1,0 +1,132 @@
+{
+  "worker_id": "w1",
+  "scene_ids": [
+    "scene_1",
+    "scene_2",
+    "scene_3"
+  ],
+  "scenes": {
+    "scene_1": {
+      "start_s": 0,
+      "effects": [
+        "svg-path-draw",
+        "scale-swap-transition"
+      ],
+      "rule_paths": [
+        "/home/user/ADACompliance/.agents/skills/hyperframes-animation/rules/svg-path-draw.md",
+        "/home/user/ADACompliance/.agents/skills/hyperframes-animation/rules/scale-swap-transition.md"
+      ],
+      "assetCandidates": [],
+      "estimatedDuration_s": 6.037,
+      "voicePath": "assets/voice/scene_1.wav",
+      "wordsPath": "",
+      "design_chunks": {
+        "tokens_file": "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/tokens.css",
+        "easings_file": "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/easings.js",
+        "voice_file": "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/voice.md",
+        "hints_file": "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/composition-hints.md",
+        "type_roles_file": "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/type-roles.md",
+        "components": [
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/chip.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/divider-loud.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/hero.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/paper-grain-overlay.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/pill-yes.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/pinned-card.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/process-step.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/quote-panel.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/safety-pin.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/scribble-note.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/stamp.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/stat-counter.html"
+        ]
+      },
+      "creative_brief": "Someone lands on the page and finds part of it simply isn't there for them. Composition: Centered. A large hand-drawn website wireframe (`pinned-card`, askew tilt) fills ~55% of the frame, pinned by a single `safety-pin` at top-left corner. One quarter of the wireframe block visually tears away (clip-path reveal, write-on direction reversed to a \"tear-off\") to the right, leaving a jagged paper-edge gap — the absence is the visual subject. Eyebrow chip top-left: `chip` reading \"FIELD REPORT 01\" in mono uppercase. Depth: background paper grain, midground wireframe card, foreground torn fragment receding with drop opacity. Type: Hero number \"1 in 4\" rendered in display tier inside the wireframe's empty torn zone — mega/hero scale jump vs. the mono eyebrow chip (7x+ contrast). Scribble-note beneath in Caveat: \"someone can't get in\" with `pp-underline` on \"in.\" Motion: Macro move: slow paper-settle drift on the whole card. Secondary: the tear executes as a `scale-swap-transition`-style detach (write-on clip-path, `EASE.emphasis`, `DUR.med`), then stillness-before-climax (0.4s hold on the gap) before the hero number snaps in on `EASE.entry`. Pin tilts within tokenized range on entry, no counter-rotation. `svg-path-draw` draws the wireframe linework in; `scale-swap-transition` executes the tear-away. Eye destination: the torn gap pulls the eye into Scene 2's term card via `cut-the-curve` (break, cross-dissolve).\n\n",
+      "local_start_s": 0,
+      "visual_id": "group_w1"
+    },
+    "scene_2": {
+      "start_s": 6.037,
+      "effects": [
+        "coordinate-target-zoom",
+        "counting-dynamic-scale"
+      ],
+      "rule_paths": [
+        "/home/user/ADACompliance/.agents/skills/hyperframes-animation/rules/coordinate-target-zoom.md",
+        "/home/user/ADACompliance/.agents/skills/hyperframes-animation/rules/counting-dynamic-scale.md"
+      ],
+      "assetCandidates": [],
+      "estimatedDuration_s": 7.509,
+      "voicePath": "assets/voice/scene_2.wav",
+      "wordsPath": "",
+      "design_chunks": {
+        "tokens_file": "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/tokens.css",
+        "easings_file": "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/easings.js",
+        "voice_file": "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/voice.md",
+        "hints_file": "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/composition-hints.md",
+        "type_roles_file": "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/type-roles.md",
+        "components": [
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/chip.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/divider-loud.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/hero.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/paper-grain-overlay.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/pill-yes.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/pinned-card.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/process-step.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/quote-panel.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/safety-pin.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/scribble-note.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/stamp.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/stat-counter.html"
+        ]
+      },
+      "creative_brief": "This isn't a niche legal checkbox — it's a stack of risk most owners never see coming. Composition: Asymmetric 60/40. A single `pinned-card` (the \"ADA Compliance\" term card) occupies the left 60%, inked in hero display type with negative tracking; right 40% carries a vertical stack of small `stamp` components (\"RECEIVED\", \"DRAFT 04\"-style) suggesting a rising stack of demand letters, plus a `stat-counter` ticking upward beside them. Type: Hero word \"ADA compliance\" — display tier, sentence case per voice rules, anchored left card. Mono eyebrow above: \"TERM 02\". Caveat scribble-note lower-left: \"even well-meaning businesses\" with underline on \"well-meaning.\" Motion: Macro: continuous push-in (camera moves toward the term card, simulating the \"push through the torn wireframe\" transition beat). Secondary: the stamp stack on the right enters with a tight stagger (3-4 items, total ≤500ms), `stat-counter` counts up once and rests via `counting-dynamic-scale`. Term card itself holds still — the one moving macro layer, `coordinate-target-zoom`, carries it. Eye destination (continue seam): the term card carries across and unfolds into Scene 3's icon stack via `card-morph-anchor`.\n\n",
+      "local_start_s": 6.037,
+      "visual_id": "group_w1"
+    },
+    "scene_3": {
+      "start_s": 13.546,
+      "effects": [
+        "svg-icon-enrichment",
+        "dynamic-content-sequencing"
+      ],
+      "rule_paths": [
+        "/home/user/ADACompliance/.agents/skills/hyperframes-animation/rules/svg-icon-enrichment.md",
+        "/home/user/ADACompliance/.agents/skills/hyperframes-animation/rules/dynamic-content-sequencing.md"
+      ],
+      "assetCandidates": [],
+      "estimatedDuration_s": 6.251,
+      "voicePath": "assets/voice/scene_3.wav",
+      "wordsPath": "",
+      "design_chunks": {
+        "tokens_file": "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/tokens.css",
+        "easings_file": "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/easings.js",
+        "voice_file": "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/voice.md",
+        "hints_file": "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/composition-hints.md",
+        "type_roles_file": "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/type-roles.md",
+        "components": [
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/chip.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/divider-loud.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/hero.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/paper-grain-overlay.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/pill-yes.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/pinned-card.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/process-step.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/quote-panel.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/safety-pin.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/scribble-note.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/stamp.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/stat-counter.html"
+        ]
+      },
+      "creative_brief": "Compliance isn't abstract — it looks like three concrete, achievable habits. Composition: Rule of Thirds. Three `process-step` components stack vertically along the left third-line, each with a Caveat hand-script numeral (1, 2, 3) and a small line-drawn glyph (arrow / text-lines / block-grid) rendered as `svg-icon-enrichment` icons. Right two-thirds stays open paper with a single supporting scribble-note, keeping the squint-test hierarchy clean: the step column is the obvious primary mass. Type: Each step's label in Space Grotesk heading tier (clear nav / readable text / structured pages), well below hero scale of scene 2 — deliberate scale-down signaling \"in practice\" detail rather than headline drama. No mono chrome needed here; the script numerals carry the ordering voice. Motion: Macro: gentle vertical parallax drift tying the three steps together as one filmed move. Secondary: each `process-step` icon plays its `svg-icon-enrichment` animation in sequence (rapid succession matching \"Clear navigation. Readable text. Well-structured pages.\"), staggered ≤500ms total via `dynamic-content-sequencing`, then all three settle and hold. Eye destination (continue seam): the stacked icons merge into Scene 4's arrow/magnifying-glass glyph via `card-morph-anchor`.\n\n",
+      "local_start_s": 13.546,
+      "visual_id": "group_w1"
+    }
+  },
+  "start_s": 0,
+  "duration_s": 19.797,
+  "composition_id": "group_w1",
+  "composition_file": "compositions/group_w1.html",
+  "kind": "group"
+}

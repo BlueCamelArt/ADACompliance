@@ -1,0 +1,52 @@
+{
+  "worker_id": "w3",
+  "scene_ids": [
+    "scene_5"
+  ],
+  "scenes": {
+    "scene_5": {
+      "start_s": 25.813,
+      "effects": [
+        "card-morph-anchor",
+        "press-release-spring"
+      ],
+      "rule_paths": [
+        "/home/user/ADACompliance/.agents/skills/hyperframes-animation/rules/card-morph-anchor.md",
+        "/home/user/ADACompliance/.agents/skills/hyperframes-animation/rules/press-release-spring.md"
+      ],
+      "assetCandidates": [],
+      "estimatedDuration_s": 6.208,
+      "voicePath": "assets/voice/scene_5.wav",
+      "wordsPath": "",
+      "design_chunks": {
+        "tokens_file": "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/tokens.css",
+        "easings_file": "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/easings.js",
+        "voice_file": "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/voice.md",
+        "hints_file": "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/composition-hints.md",
+        "type_roles_file": "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/type-roles.md",
+        "components": [
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/chip.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/divider-loud.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/hero.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/paper-grain-overlay.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/pill-yes.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/pinned-card.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/process-step.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/quote-panel.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/safety-pin.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/scribble-note.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/stamp.html",
+          "/home/user/ADACompliance/videos/ada-compliance-explainer/design-system/chunks/components/stat-counter.html"
+        ]
+      },
+      "creative_brief": "Now the visitor isn't locked out — and the business knows exactly where it stands. Composition: Centered (climax/CTA). A `pinned-card` reading \"FREE AUDIT\" slides in and is fixed in place by a large `safety-pin` with the loudest accent moment in the film: `--brand-accent` red on the stamp border. Beneath/behind it, the now-complete wireframe from Scene 1 (no more tear) sits faint in the background — full-circle callback, depth layer rather than focal. Type: `stamp` component, DM Mono uppercase, \"FREE AUDIT\" rotated to tokenized stamp tilt. Below it, CTA line in display tier sentence case: \"Claim your free ADA audit.\" Mono attribution line: \"BUSINESS DESIGN INNOVATIONS\" tracked wide as the closing source tag. Motion: Macro: slow settle-and-hold dolly (camera eases to rest, no further drift after this beat — closing scene per beat-structure \"still and breathable\"). Secondary: the card slides in then stillness-before-climax (0.5s suspended hold) before the pin slams down (`EASE.emphasis`, confident non-bouncy settle, `press-release-spring`) exactly as the CTA line lands; the completed wireframe behind fades up gently via `card-morph-anchor` to confirm closure. This is the film's end — no further transition.\n",
+      "local_start_s": 0,
+      "visual_id": "scene_5"
+    }
+  },
+  "start_s": 25.813,
+  "duration_s": 6.208,
+  "composition_id": "scene_5",
+  "composition_file": "compositions/scene_5.html",
+  "kind": "scene"
+}

@@ -1,0 +1,774 @@
+<template id="group_w1-template">
+  <div id="root" class="group_w1-root" data-composition-id="group_w1" data-width="1920" data-height="1080" data-duration="19.797" style="position:relative; width:1920px; height:1080px; overflow:hidden;">
+    <style>
+      @font-face {
+        font-family: 'Space Grotesk';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('../public/fonts/space-grotesk-400.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'Space Grotesk';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url('../public/fonts/space-grotesk-700.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'DM Mono';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('../public/fonts/dm-mono-400.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'DM Mono';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url('../public/fonts/dm-mono-500.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'Caveat';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('../public/fonts/caveat-400.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'Caveat';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url('../public/fonts/caveat-700.woff2') format('woff2');
+      }
+      /* Root: pin-and-paper warm yellow canvas, shared across the whole run. */
+      #root {
+        background: var(--canvas);
+        font-family: 'Space Grotesk', sans-serif;
+      }
+      #root *,
+      #root *::before,
+      #root *::after {
+        box-sizing: border-box;
+      }
+
+      /* ---------- shared / persistent (g1-) ---------- */
+      .g1-stage {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+      }
+
+      /* persistent term card — born in scene_2, holds through the seam into scene_3
+         where it demotes/fades as the process-step column takes over primary role */
+      .g1-term-card {
+        position: absolute;
+        left: 168px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 880px;
+        z-index: 5;
+      }
+      .g1-term-eyebrow {
+        font-family: 'DM Mono', monospace;
+        font-weight: 500;
+        font-size: 26px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--brand-primary);
+        margin: 0 0 18px;
+      }
+      .g1-term-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        font-size: clamp(64px, 7vw, 128px);
+        line-height: 1.02;
+        letter-spacing: -0.035em;
+        color: var(--brand-primary);
+        margin: 0;
+      }
+
+      /* ---------- scene 1 local (s1-) ---------- */
+      .s1-stage {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+      }
+      .s1-chip-wrap {
+        position: absolute;
+        top: 96px;
+        left: 168px;
+        z-index: 6;
+      }
+      .s1-chip {
+        display: inline-block;
+        font-family: 'DM Mono', monospace;
+        font-weight: 500;
+        font-size: 26px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--brand-primary);
+        padding: 6px 0;
+      }
+      .s1-wire-wrap {
+        position: relative;
+        width: 1040px;
+        height: 660px;
+        transform: rotate(0.9deg);
+        transform-origin: 50% 50%;
+      }
+      .s1-wire-card {
+        position: absolute;
+        inset: 0;
+        background: var(--surface-cream);
+        border: var(--border-hairline);
+        border-radius: var(--radius-card);
+        box-shadow: var(--shadow-pin-hero);
+        overflow: hidden;
+      }
+      .s1-wire-svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .s1-wire-svg path,
+      .s1-wire-svg rect,
+      .s1-wire-svg line {
+        fill: none;
+        stroke: var(--brand-primary);
+        stroke-width: 3;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      /* torn fragment — quarter of the card, clip-path reveals a jagged tear edge */
+      .s1-tear-fragment {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 30%;
+        height: 100%;
+        background: var(--surface-cream);
+        border-left: var(--border-hairline);
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 6% 86%, 0% 74%, 8% 60%, 2% 46%, 9% 32%, 0% 18%);
+        z-index: 3;
+      }
+      .s1-gap-zone {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 30%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+      }
+      .s1-hero-number {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        font-size: clamp(64px, 7vw, 120px);
+        line-height: 0.9;
+        letter-spacing: -0.04em;
+        color: var(--brand-primary);
+        text-align: center;
+        opacity: 0;
+      }
+      .s1-pin-wrap {
+        position: absolute;
+        top: -18px;
+        left: 56px;
+        z-index: 7;
+      }
+      .s1-pin {
+        color: var(--brand-primary);
+        transform-origin: center;
+        width: 120px;
+        height: 32px;
+      }
+      .s1-scribble {
+        position: absolute;
+        left: 168px;
+        bottom: 84px;
+        font-family: 'Caveat', cursive;
+        font-weight: 600;
+        font-size: clamp(32px, 2.8vw, 38px);
+        line-height: 1.05;
+        color: var(--brand-primary);
+        transform: rotate(-2deg);
+        max-width: 26ch;
+        z-index: 6;
+      }
+      .s1-underline {
+        border-bottom: 2px solid var(--brand-primary);
+        padding-bottom: 1px;
+      }
+
+      /* ---------- scene 2 local (s2-) ---------- */
+      .s2-zoom-outer {
+        position: absolute;
+        inset: 0;
+        transform-origin: 50% 50%;
+        will-change: transform;
+      }
+      .s2-zoom-inner {
+        position: absolute;
+        inset: 0;
+        will-change: transform;
+      }
+      .s2-stamp-stack {
+        position: absolute;
+        right: 168px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 480px;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        z-index: 5;
+      }
+      .s2-stamp-row {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+      .s2-stamp {
+        display: inline-block;
+        border: var(--border-stamp);
+        color: var(--brand-accent);
+        background: transparent;
+        padding: 6px 16px;
+        font-family: 'DM Mono', monospace;
+        font-weight: 500;
+        font-size: 26px;
+        line-height: 1;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        transform: rotate(-4deg);
+        border-radius: 0;
+        opacity: 0;
+      }
+      .s2-counter-card {
+        position: relative;
+        background: var(--surface-cream);
+        border: var(--border-hairline);
+        border-radius: var(--radius-card);
+        box-shadow: var(--shadow-pin-standard);
+        padding: 28px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        color: var(--brand-primary);
+        opacity: 0;
+      }
+      .s2-counter-num {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        font-size: clamp(56px, 6vw, 84px);
+        line-height: 0.9;
+        letter-spacing: -0.03em;
+        font-variant-numeric: tabular-nums;
+        color: var(--brand-primary);
+      }
+      .s2-counter-label {
+        font-family: 'DM Mono', monospace;
+        font-weight: 500;
+        font-size: 22px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        opacity: 0.7;
+      }
+      .s2-scribble {
+        position: absolute;
+        left: 168px;
+        bottom: 84px;
+        font-family: 'Caveat', cursive;
+        font-weight: 600;
+        font-size: clamp(28px, 2vw, 32px);
+        line-height: 1.05;
+        color: var(--brand-primary);
+        transform: rotate(-2deg);
+        max-width: 30ch;
+        z-index: 6;
+      }
+      .s2-underline {
+        border-bottom: 2px solid var(--brand-primary);
+        padding-bottom: 1px;
+      }
+
+      /* ---------- scene 3 local (s3-) ---------- */
+      .s3-step-col {
+        position: absolute;
+        left: 168px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 560px;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        z-index: 6;
+      }
+      .s3-step {
+        position: relative;
+        background: var(--surface-cream);
+        border: var(--border-hairline);
+        border-radius: var(--radius-card);
+        box-shadow: var(--shadow-pin-compact);
+        padding: 26px 24px 20px;
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        opacity: 0;
+      }
+      .s3-step-num {
+        font-family: 'Caveat', cursive;
+        font-weight: 700;
+        font-size: clamp(44px, 4.4vw, 60px);
+        line-height: 0.9;
+        color: var(--brand-primary);
+        flex: 0 0 auto;
+        width: 60px;
+      }
+      .s3-step-icon {
+        width: 64px;
+        height: 64px;
+        flex: 0 0 auto;
+      }
+      .s3-step-icon path,
+      .s3-step-icon line,
+      .s3-step-icon rect {
+        fill: none;
+        stroke: var(--brand-primary);
+        stroke-width: 5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .s3-step-body {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .s3-step-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        font-size: clamp(26px, 2vw, 32px);
+        line-height: 1.05;
+        letter-spacing: -0.015em;
+        color: var(--brand-primary);
+        margin: 0;
+      }
+      .s3-scribble {
+        position: absolute;
+        right: 220px;
+        top: 50%;
+        transform: translateY(-50%) rotate(-2deg);
+        font-family: 'Caveat', cursive;
+        font-weight: 600;
+        font-size: clamp(28px, 2vw, 32px);
+        line-height: 1.1;
+        color: var(--brand-primary);
+        max-width: 22ch;
+        opacity: 0;
+        z-index: 5;
+      }
+
+      /* paper grain — always on top, every scene */
+      .g1-grain {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 9;
+        opacity: 0.35;
+        mix-blend-mode: multiply;
+        background-image: var(--paper-grain);
+      }
+    </style>
+
+    <!-- ===================== SCENE 1 (local) ===================== -->
+    <div class="s1-stage" id="s1-stage" data-layout-allow-overflow="true">
+      <div class="s1-chip-wrap">
+        <span class="s1-chip">Field report 01</span>
+      </div>
+
+      <div class="s1-wire-wrap" id="s1-wire-wrap" data-layout-allow-overflow="true">
+        <div class="s1-wire-card">
+          <svg class="s1-wire-svg" viewBox="0 0 1040 660" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect id="s1-wf-1" x="40" y="40" width="960" height="80" rx="4" />
+            <line id="s1-wf-2" x1="40" y1="170" x2="500" y2="170" />
+            <line id="s1-wf-3" x1="40" y1="210" x2="420" y2="210" />
+            <rect id="s1-wf-4" x="40" y="260" width="300" height="180" rx="4" />
+            <line id="s1-wf-5" x1="380" y1="280" x2="700" y2="280" />
+            <line id="s1-wf-6" x1="380" y1="320" x2="700" y2="320" />
+            <line id="s1-wf-7" x1="380" y1="360" x2="640" y2="360" />
+            <rect id="s1-wf-8" x="40" y="480" width="960" height="120" rx="4" />
+          </svg>
+        </div>
+        <div class="s1-tear-fragment" id="s1-tear-fragment"></div>
+        <div class="s1-gap-zone">
+          <div class="s1-hero-number" id="s1-hero-number">1 in 4</div>
+        </div>
+        <div class="s1-pin-wrap">
+          <svg class="s1-pin" id="s1-pin" viewBox="0 0 360 110" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M312 38 C 296 32, 290 50, 304 58 C 320 66, 340 60, 342 44 C 344 28, 322 18, 300 24" />
+              <path d="M300 24 C 240 14, 140 14, 70 30" />
+              <path d="M312 56 C 250 78, 150 82, 80 70" />
+              <ellipse cx="58" cy="50" rx="24" ry="14" />
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <p class="s1-scribble">someone can&rsquo;t get <span class="s1-underline">in.</span></p>
+    </div>
+
+    <!-- ===================== SCENE 2 (local + persistent term card) ===================== -->
+    <div class="s2-zoom-outer" id="s2-zoom-outer" data-layout-allow-overflow="true">
+      <div class="s2-zoom-inner" id="s2-zoom-inner">
+        <div class="g1-term-card" id="g1-term-card">
+          <p class="g1-term-eyebrow" id="g1-term-eyebrow">Term 02</p>
+          <h2 class="g1-term-title" id="g1-term-title">ADA compliance</h2>
+        </div>
+      </div>
+
+      <div class="s2-stamp-stack" id="s2-stamp-stack">
+        <div class="s2-stamp-row">
+          <span class="s2-stamp" id="s2-stamp-1">Received</span>
+        </div>
+        <div class="s2-stamp-row">
+          <span class="s2-stamp" id="s2-stamp-2">Draft 04</span>
+        </div>
+        <div class="s2-stamp-row">
+          <span class="s2-stamp" id="s2-stamp-3">Pending</span>
+        </div>
+        <div class="s2-counter-card" id="s2-counter-card">
+          <div class="s2-counter-num" id="s2-counter-num">0</div>
+          <div class="s2-counter-label">Demand letters / yr</div>
+        </div>
+      </div>
+
+      <p class="s2-scribble" id="s2-scribble">even <span class="s2-underline">well-meaning</span> businesses get one</p>
+    </div>
+
+    <!-- ===================== SCENE 3 (local) ===================== -->
+    <div class="s3-step-col" id="s3-step-col">
+      <div class="s3-step" id="s3-step-1">
+        <span class="s3-step-num">1</span>
+        <svg class="s3-step-icon" id="s3-icon-1" viewBox="0 0 64 64" aria-hidden="true">
+          <line x1="10" y1="32" x2="48" y2="32" />
+          <path id="s3-arrow-head" d="M36 20 L48 32 L36 44" />
+        </svg>
+        <div class="s3-step-body">
+          <h3 class="s3-step-title">Clear navigation</h3>
+        </div>
+      </div>
+      <div class="s3-step" id="s3-step-2">
+        <span class="s3-step-num">2</span>
+        <svg class="s3-step-icon" id="s3-icon-2" viewBox="0 0 64 64" aria-hidden="true">
+          <line id="s3-tline-1" x1="10" y1="18" x2="54" y2="18" />
+          <line id="s3-tline-2" x1="10" y1="32" x2="54" y2="32" />
+          <line id="s3-tline-3" x1="10" y1="46" x2="40" y2="46" />
+        </svg>
+        <div class="s3-step-body">
+          <h3 class="s3-step-title">Readable text</h3>
+        </div>
+      </div>
+      <div class="s3-step" id="s3-step-3">
+        <span class="s3-step-num">3</span>
+        <svg class="s3-step-icon" id="s3-icon-3" viewBox="0 0 64 64" aria-hidden="true">
+          <rect id="s3-g1" x="8" y="8" width="20" height="20" rx="2" />
+          <rect id="s3-g2" x="36" y="8" width="20" height="20" rx="2" />
+          <rect id="s3-g3" x="8" y="36" width="20" height="20" rx="2" />
+          <rect id="s3-g4" x="36" y="36" width="20" height="20" rx="2" />
+        </svg>
+        <div class="s3-step-body">
+          <h3 class="s3-step-title">Well-structured pages</h3>
+        </div>
+      </div>
+    </div>
+
+    <p class="s3-scribble" id="s3-scribble">three habits, not a checklist of dread</p>
+
+    <div class="g1-grain" aria-hidden="true"></div>
+
+    <script>
+      (async function () {
+        const EASE = {
+          entry: "power2.out",
+          emphasis: "power3.out",
+          exit: "power2.in",
+          drift: "sine.inOut",
+        };
+        const DUR = {
+          snap: 0.18,
+          med: 0.5,
+          slow: 0.95,
+        };
+
+        window.__timelines = window.__timelines || {};
+        const tl = gsap.timeline({ paused: true });
+
+        const T = { scene_1: 0, scene_2: 6.037, scene_3: 13.546 };
+
+        // ---------------- initial hidden states ----------------
+        gsap.set("#s1-hero-number", { opacity: 0, scale: 0.85, transformOrigin: "50% 50%" });
+        gsap.set("#s1-pin", { rotation: -10, transformOrigin: "50% 50%" });
+        gsap.set("#s1-tear-fragment", { x: 0, y: 0, opacity: 1 });
+        gsap.set(["#s1-wf-1", "#s1-wf-2", "#s1-wf-3", "#s1-wf-4", "#s1-wf-5", "#s1-wf-6", "#s1-wf-7", "#s1-wf-8"], {
+          opacity: 1,
+        });
+        gsap.set(".s1-scribble", { opacity: 0, clipPath: "inset(0 100% 0 0)" });
+
+        gsap.set("#g1-term-card", { opacity: 0, y: 24 });
+        gsap.set(["#s2-stamp-1", "#s2-stamp-2", "#s2-stamp-3"], { opacity: 0, y: 20, scale: 0.92 });
+        gsap.set("#s2-counter-card", { opacity: 0, y: 16 });
+        gsap.set("#s2-scribble", { opacity: 0, clipPath: "inset(0 100% 0 0)" });
+        gsap.set("#s2-zoom-outer", { scale: 1 });
+        gsap.set("#s2-zoom-inner", { x: 0, y: 0 });
+
+        gsap.set(["#s3-step-1", "#s3-step-2", "#s3-step-3"], { opacity: 0, y: 22 });
+        gsap.set("#s3-scribble", { opacity: 0, y: 14 });
+
+        // scene_1 is a break-start, not part of the continuity chain into scene_2/3 —
+        // it must vacate the stage before scene_2 begins (handoff, no overlap)
+
+        // ---------------- SVG path-draw setup (scene 1 wireframe) ----------------
+        const wfPaths = document.querySelectorAll(
+          "#s1-wf-1, #s1-wf-2, #s1-wf-3, #s1-wf-4, #s1-wf-5, #s1-wf-6, #s1-wf-7, #s1-wf-8",
+        );
+        wfPaths.forEach((p) => {
+          const len = p.getTotalLength();
+          p.style.strokeDasharray = `${len}`;
+          p.style.strokeDashoffset = `${len}`;
+        });
+
+        // ================= SCENE 1: torn wireframe (0 - 6.037s) =================
+        const S1 = T.scene_1;
+
+        // Wireframe draws in, staggered ~70-80% overlap
+        const wfSeq = ["#s1-wf-1", "#s1-wf-2", "#s1-wf-3", "#s1-wf-4", "#s1-wf-5", "#s1-wf-6", "#s1-wf-7", "#s1-wf-8"];
+        wfSeq.forEach((sel, i) => {
+          tl.to(sel, { strokeDashoffset: 0, duration: 0.5, ease: "power2.out" }, S1 + 0.15 + i * 0.18);
+        });
+
+        // Pin entry — tilt within tokenized range, no counter-rotation
+        tl.fromTo(
+          "#s1-pin",
+          { opacity: 0, y: -14, rotation: -10 },
+          { opacity: 1, y: 0, rotation: -10, duration: DUR.med, ease: EASE.entry },
+          S1 + 0.1,
+        );
+
+        // Chip + paper-settle drift on the whole wireframe card
+        tl.fromTo(
+          "#s1-wire-wrap",
+          { opacity: 0, rotation: 0.9, y: -10 },
+          { opacity: 1, rotation: 0.9, y: 0, duration: DUR.slow, ease: EASE.entry },
+          S1 + 0,
+        );
+
+        // Tear-away — scale-swap-transition style detach (write-on clip-path)
+        const TEAR_START = S1 + 1.9;
+        tl.to(
+          "#s1-tear-fragment",
+          {
+            x: 90,
+            opacity: 0,
+            duration: DUR.med,
+            ease: EASE.emphasis,
+            clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 6% 86%, 0% 74%, 8% 60%, 2% 46%, 9% 32%, 0% 18%)",
+          },
+          TEAR_START,
+        );
+
+        // stillness-before-climax — 0.4s hold on the gap (scene 1 is one of the 2 allowed scenes)
+        const GAP_HOLD_END = TEAR_START + DUR.med + 0.4;
+
+        // Hero number snaps in on EASE.entry
+        tl.fromTo(
+          "#s1-hero-number",
+          { opacity: 0, scale: 0.85 },
+          { opacity: 1, scale: 1, duration: DUR.med, ease: EASE.entry },
+          GAP_HOLD_END,
+        );
+
+        // Scribble write-on (clip-path reveal left to right)
+        tl.fromTo(
+          ".s1-scribble",
+          { opacity: 0, clipPath: "inset(0 100% 0 0)" },
+          { opacity: 1, clipPath: "inset(0 0% 0 0)", duration: DUR.med, ease: EASE.entry },
+          GAP_HOLD_END + 0.25,
+        );
+
+        // ---- ambient drift on the wireframe card (subtle, scene-1 budget) ----
+        tl.to(
+          "#s1-wire-wrap",
+          { y: -4, duration: 2.6, ease: EASE.drift, repeat: 1, yoyo: true },
+          S1 + 1.0,
+        );
+
+        // ================= SCENE 2: term card + risk stack (6.037 - 13.546s) =================
+        const S2 = T.scene_2;
+
+        // scene_1 exits as scene_2 enters (no foreground overlap across the break)
+        tl.to("#s1-stage", { opacity: 0, duration: DUR.med, ease: EASE.exit }, S2 - DUR.med);
+
+        // coordinate-target-zoom — measure term card center, push toward it
+        const W = 1920, H = 1080;
+        const termRect = document.getElementById("g1-term-card").getBoundingClientRect();
+        const TARGET_OFFSET_X = termRect.left + termRect.width / 2 - W / 2;
+        const TARGET_OFFSET_Y = termRect.top + termRect.height / 2 - H / 2;
+        const counterX = -TARGET_OFFSET_X;
+        const counterY = -TARGET_OFFSET_Y;
+        const maxScale = Math.min((0.88 * W) / termRect.width, (0.88 * H) / termRect.height);
+        const ZOOM_SCALE = Math.min(1.18, maxScale);
+
+        // term card arrives
+        tl.fromTo(
+          "#g1-term-card",
+          { opacity: 0, y: 24 },
+          { opacity: 1, y: 0, duration: DUR.slow, ease: EASE.entry },
+          S2 + 0,
+        );
+
+        // stamp stack — tight stagger, total <= 500ms
+        ["#s2-stamp-1", "#s2-stamp-2", "#s2-stamp-3"].forEach((sel, i) => {
+          tl.fromTo(
+            sel,
+            { opacity: 0, y: 20, scale: 0.92, rotation: -4 },
+            { opacity: 1, y: 0, scale: 1, rotation: -4, duration: 0.32, ease: EASE.emphasis },
+            S2 + 0.3 + i * 0.16,
+          );
+        });
+
+        // stat-counter card reveal
+        tl.fromTo(
+          "#s2-counter-card",
+          { opacity: 0, y: 16 },
+          { opacity: 1, y: 0, duration: DUR.med, ease: EASE.entry },
+          S2 + 0.9,
+        );
+
+        // counting-dynamic-scale — number counts up once, rests
+        const counterEl = document.getElementById("s2-counter-num");
+        const counterState = { value: 0, fontSize: 40 };
+        tl.to(
+          counterState,
+          {
+            value: 2200,
+            fontSize: 78,
+            duration: 1.3,
+            ease: "power3.out",
+            onUpdate: () => {
+              counterEl.textContent = Math.round(counterState.value).toLocaleString();
+              counterEl.style.fontSize = `${counterState.fontSize}px`;
+            },
+          },
+          S2 + 1.1,
+        );
+
+        // scribble write-on
+        tl.fromTo(
+          "#s2-scribble",
+          { opacity: 0, clipPath: "inset(0 100% 0 0)" },
+          { opacity: 1, clipPath: "inset(0 0% 0 0)", duration: DUR.med, ease: EASE.entry },
+          S2 + 1.6,
+        );
+
+        // macro push-in — continuous camera push toward the term card; holds through the seam
+        tl.to(
+          "#s2-zoom-outer",
+          { scale: ZOOM_SCALE, duration: 4.2, ease: "power2.inOut" },
+          S2 + 2.0,
+        );
+        tl.to(
+          "#s2-zoom-inner",
+          { x: counterX, y: counterY, duration: 4.2, ease: "power2.inOut" },
+          S2 + 2.0,
+        );
+
+        // ================= SCENE 3: process-step trio (13.546 - 19.797s) =================
+        const S3 = T.scene_3;
+
+        // term card demotes / fades as the step column becomes primary — handoff
+        tl.to("#g1-term-card", { opacity: 0, duration: DUR.med, ease: EASE.exit }, S3 - 0.4);
+        tl.to("#s2-stamp-stack", { opacity: 0, duration: DUR.med, ease: EASE.exit }, S3 - 0.4);
+        tl.to("#s2-scribble", { opacity: 0, duration: DUR.med, ease: EASE.exit }, S3 - 0.4);
+        // the zoom wrapper carries #g1-term-card's pushed-in pose; it must also fade out
+        // before scene 3 content takes over, otherwise it stays opaque and occludes
+        // #s3-step-col / #s3-step-1 underneath it (inspect: text_occluded #s2-zoom-inner)
+        tl.to("#s2-zoom-outer", { opacity: 0, duration: DUR.med, ease: EASE.exit }, S3 - 0.4);
+
+        // gentle vertical parallax drift tying the three steps together (macro move)
+        tl.fromTo(
+          "#s3-step-col",
+          { y: 18 },
+          { y: 0, duration: 1.2, ease: EASE.entry },
+          S3 + 0,
+        );
+
+        // dynamic-content-sequencing — staggered entries, total <= 500ms across 3 items
+        const stepSeq = ["#s3-step-1", "#s3-step-2", "#s3-step-3"];
+        stepSeq.forEach((sel, i) => {
+          tl.fromTo(
+            sel,
+            { opacity: 0, y: 22 },
+            { opacity: 1, y: 0, duration: 0.4, ease: EASE.entry },
+            S3 + 0.15 + i * 0.17,
+          );
+        });
+
+        // svg-icon-enrichment — each icon plays its motion in sequence as its card lands
+        // icon 1: arrow oscillation (nudge forward)
+        tl.fromTo(
+          "#s3-arrow-head",
+          { x: 0 },
+          { x: 6, duration: 0.4, ease: "sine.inOut", repeat: 1, yoyo: true },
+          S3 + 0.25,
+        );
+        // icon 2: text-line dash flow
+        const flowState2 = { offset: 0 };
+        const tline2 = document.getElementById("s3-tline-2");
+        tline2.style.strokeDasharray = "8 6";
+        tl.to(
+          flowState2,
+          {
+            offset: -56,
+            duration: 0.6,
+            ease: "none",
+            onUpdate: () => {
+              tline2.style.strokeDashoffset = String(flowState2.offset);
+            },
+          },
+          S3 + 0.42,
+        );
+        // icon 3: grid blocks pulse in sequence
+        ["#s3-g1", "#s3-g2", "#s3-g3", "#s3-g4"].forEach((sel, i) => {
+          tl.fromTo(
+            sel,
+            { opacity: 0.3 },
+            { opacity: 1, duration: 0.18, ease: EASE.entry },
+            S3 + 0.59 + i * 0.07,
+          );
+        });
+
+        // settle hold on all three
+        tl.to(stepSeq, { y: 0, duration: 0.3, ease: EASE.exit }, S3 + 1.1);
+
+        // supporting scribble note
+        tl.fromTo(
+          "#s3-scribble",
+          { opacity: 0, y: 14 },
+          { opacity: 1, y: 0, duration: DUR.med, ease: EASE.entry },
+          S3 + 1.3,
+        );
+
+        window.__timelines["group_w1"] = tl;
+      })();
+    </script>
+  </div>
+</template>
+

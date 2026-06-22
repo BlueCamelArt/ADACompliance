@@ -1,0 +1,356 @@
+<template id="scene_5-template">
+  <div id="root" class="scene_5-root" data-composition-id="scene_5" data-width="1920" data-height="1080" data-duration="6.208" style="position:relative; width:1920px; height:1080px; overflow:hidden;">
+    <style>
+      @font-face {
+        font-family: 'Space Grotesk';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('../public/fonts/space-grotesk-400.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'Space Grotesk';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url('../public/fonts/space-grotesk-700.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'DM Mono';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('../public/fonts/dm-mono-400.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'DM Mono';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url('../public/fonts/dm-mono-500.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'Caveat';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('../public/fonts/caveat-400.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'Caveat';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url('../public/fonts/caveat-700.woff2') format('woff2');
+      }
+      /* Root — same warm paper canvas as scene 1, no per-scene drift. */
+      #root {
+        background: var(--canvas);
+        font-family: 'Space Grotesk', sans-serif;
+      }
+      #root *,
+      #root *::before,
+      #root *::after {
+        box-sizing: border-box;
+      }
+
+      /* Paper grain ambient — full-bleed, identical low density every scene. */
+      .s5-grain {
+        position: absolute;
+        inset: 0;
+        background-image: var(--paper-grain);
+        opacity: 0.22;
+        mix-blend-mode: multiply;
+        pointer-events: none;
+      }
+
+      /* Faint completed wireframe callback — depth layer, never focal. */
+      .s5-wireframe {
+        position: absolute;
+        left: 50%;
+        top: 46%;
+        transform: translate(-50%, -50%);
+        width: 760px;
+        height: 560px;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .s5-wireframe-page {
+        width: 100%;
+        height: 100%;
+        border: 2px solid var(--brand-primary);
+        border-radius: 6px;
+        background: var(--surface-paper-2);
+        padding: 36px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        opacity: 0.4;
+      }
+      .s5-wf-bar {
+        height: 18px;
+        border-radius: 3px;
+        background: var(--brand-primary);
+        opacity: 0.22;
+      }
+      .s5-wf-bar.s5-wf-title {
+        width: 46%;
+        height: 30px;
+      }
+      .s5-wf-bar.s5-wf-w-full {
+        width: 100%;
+      }
+      .s5-wf-bar.s5-wf-w-80 {
+        width: 80%;
+      }
+      .s5-wf-bar.s5-wf-w-60 {
+        width: 60%;
+      }
+      .s5-wf-rows {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-top: 8px;
+      }
+
+      /* Centered composition stage. */
+      .s5-stage {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 36px;
+        z-index: 1;
+      }
+
+      /* Pinned card carrying the stamp — loudest accent moment in the film. */
+      .s5-card-wrap {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .s5-card {
+        position: relative;
+        background: var(--surface-cream);
+        border: var(--border-hairline);
+        border-radius: var(--radius-card);
+        box-shadow: var(--shadow-pin-hero);
+        padding: 56px 96px 48px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 22px;
+        transform-origin: 50% 50%;
+      }
+      .s5-stamp {
+        display: inline-block;
+        border: var(--border-stamp);
+        color: var(--brand-accent);
+        background: transparent;
+        padding: 10px 26px;
+        font-family: 'DM Mono', monospace;
+        font-weight: 500;
+        font-size: 40px;
+        line-height: 1;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        transform: rotate(var(--tilt-stamp));
+        border-radius: 0;
+      }
+      .s5-card-kicker {
+        font-family: 'DM Mono', monospace;
+        font-weight: 500;
+        font-size: 24px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--brand-primary);
+        opacity: 0.65;
+      }
+
+      /* Safety pin pinning the card in place — hero scale. */
+      .s5-pin {
+        position: absolute;
+        top: -56px;
+        left: 50%;
+        transform-origin: center;
+        color: var(--brand-primary);
+        z-index: 3;
+      }
+
+      /* CTA — display tier, sentence case. */
+      .s5-cta {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        font-size: clamp(56px, 6vw, 96px);
+        line-height: 1.05;
+        letter-spacing: -0.035em;
+        color: var(--brand-primary);
+        text-align: center;
+        max-width: 18ch;
+      }
+
+      /* Mono attribution closing source tag. */
+      .s5-attribution {
+        font-family: 'DM Mono', monospace;
+        font-weight: 500;
+        font-size: 25px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--brand-primary);
+        opacity: 0.65;
+      }
+    </style>
+
+    <div class="s5-wireframe" id="s5-wireframe">
+      <div class="s5-wireframe-page">
+        <div class="s5-wf-bar s5-wf-title"></div>
+        <div class="s5-wf-rows">
+          <div class="s5-wf-bar s5-wf-w-full"></div>
+          <div class="s5-wf-bar s5-wf-w-80"></div>
+          <div class="s5-wf-bar s5-wf-w-60"></div>
+          <div class="s5-wf-bar s5-wf-w-full"></div>
+          <div class="s5-wf-bar s5-wf-w-80"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="s5-grain"></div>
+
+    <div class="s5-stage">
+      <div class="s5-card-wrap" id="s5-card-wrap">
+        <svg
+          class="s5-pin"
+          id="s5-pin"
+          viewBox="0 0 360 110"
+          width="180"
+          height="55"
+          aria-hidden="true"
+        >
+          <g
+            fill="none"
+            stroke="currentColor"
+            stroke-width="5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M312 38 C 296 32, 290 50, 304 58 C 320 66, 340 60, 342 44 C 344 28, 322 18, 300 24" />
+            <path d="M300 24 C 240 14, 140 14, 70 30" />
+            <path d="M312 56 C 250 78, 150 82, 80 70" />
+            <ellipse cx="58" cy="50" rx="24" ry="14" />
+          </g>
+        </svg>
+        <div class="s5-card" id="s5-card">
+          <span class="s5-card-kicker">Closing offer</span>
+          <span class="s5-stamp">Free audit</span>
+        </div>
+      </div>
+
+      <div class="s5-cta" id="s5-cta">Claim your free ADA audit.</div>
+
+      <div class="s5-attribution" id="s5-attribution">Business design innovations</div>
+    </div>
+
+    <script>
+      // EASE / DUR pasted from packet Tokens/easings/voice section.
+      const EASE = {
+        entry: "power2.out",
+        emphasis: "power3.out",
+        exit: "power2.in",
+        drift: "sine.inOut",
+      };
+      const DUR = {
+        snap: 0.18,
+        med: 0.5,
+        slow: 0.95,
+      };
+
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // Initial hidden / staged states (gsap.set, not CSS opacity:0).
+      gsap.set("#s5-card-wrap", { opacity: 0, y: -34, scale: 0.96 });
+      gsap.set("#s5-pin", { opacity: 0, y: -28, rotation: 26, scale: 0.7 });
+      gsap.set("#s5-cta", { opacity: 0, y: 18 });
+      gsap.set("#s5-attribution", { opacity: 0, y: 10 });
+      gsap.set("#s5-wireframe", { opacity: 0 });
+
+      // Phase 1 — card-morph-anchor: card slides in (entry, 0 -> DUR.slow).
+      tl.fromTo(
+        "#s5-card-wrap",
+        { opacity: 0, y: -34, scale: 0.96 },
+        { opacity: 1, y: 0, scale: 1, duration: DUR.slow, ease: EASE.entry },
+        0,
+      );
+
+      // Stillness-before-climax: 0.5s suspended hold after the slide settles,
+      // before the pin slams down. No tweens fire in this window.
+      const HOLD_END = DUR.slow + 0.5; // ~1.45s
+
+      // Phase 2 — press-release-spring (no bounce per system rule): pin slams
+      // down with confident non-bouncy settle, landing exactly as the CTA lands.
+      const PIN_DUR = 0.42;
+      const CTA_LAND = HOLD_END + PIN_DUR; // pin settle completes == CTA arrival
+
+      tl.fromTo(
+        "#s5-pin",
+        { opacity: 0, y: -28, rotation: 26, scale: 0.7 },
+        {
+          opacity: 1,
+          y: 0,
+          rotation: -10,
+          scale: 1,
+          duration: PIN_DUR,
+          ease: EASE.emphasis,
+        },
+        HOLD_END,
+      );
+
+      // Tiny compression "thud" on the card as the pin lands (press-release-spring
+      // input phase, linear compression, then settle — non-bouncy per system rule).
+      tl.to(
+        "#s5-card",
+        { y: 3, duration: 0.08, ease: "power1.in" },
+        HOLD_END + PIN_DUR - 0.08,
+      );
+      tl.to(
+        "#s5-card",
+        { y: 0, duration: DUR.med, ease: EASE.emphasis },
+        HOLD_END + PIN_DUR,
+      );
+
+      // CTA line lands exactly as the pin slams down.
+      tl.fromTo(
+        "#s5-cta",
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: DUR.med, ease: EASE.emphasis },
+        CTA_LAND,
+      );
+
+      // card-morph-anchor: completed wireframe fades up gently behind, confirming
+      // closure (full-circle callback to scene 1 — no more tear).
+      tl.to(
+        "#s5-wireframe",
+        { opacity: 0.5, duration: DUR.slow, ease: "power2.inOut" },
+        CTA_LAND,
+      );
+
+      // Mono attribution settles in last — closing source tag.
+      tl.fromTo(
+        "#s5-attribution",
+        { opacity: 0, y: 10 },
+        { opacity: 0.65, y: 0, duration: DUR.med, ease: EASE.entry },
+        CTA_LAND + 0.25,
+      );
+
+      // Macro: slow settle-and-hold — no further drift after this beat (closing
+      // scene). Composition holds on the final stable frame; film's end, no
+      // outgoing transition per dispatch.
+
+      window.__timelines["scene_5"] = tl;
+    </script>
+  </div>
+</template>

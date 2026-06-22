@@ -1,0 +1,213 @@
+{
+  "version": 3,
+  "generated_at": "2026-06-22T06:16:08.555Z",
+  "pinned_hyperframes_version": "0.6.121",
+  "cli_version_line": "0.6.121",
+  "npx_prefix": "npx --yes hyperframes@0.6.121",
+  "gates_clean": false,
+  "gates": {
+    "lint": {
+      "ok": true,
+      "exit_code": 0,
+      "duration_s": 1.14,
+      "errors": 0,
+      "warnings": 8,
+      "info": null,
+      "output_tail": "◆  Linting ada-compliance-explainer/4 files\n\n  ⚠ [index.html] gsap_studio_edit_blocked: GSAP tweens target \"#el-group_w1\", \"#el-scene_4\", \"#el-scene_5\" in a registered timeline. Studio cannot save drag/resize edits to these elements — the runtime skips write-back for any element that appears in a registered window.__timelines timeline.\n    Fix: The hyperframes runtime registers timelines automatically. Do not add a manual window.__timelines script unless GSAP intentionally controls element positions. For initial visibility states, use CSS (e.g. opacity:0) instead of gsap.set(). If GSAP must own these elements' positions, avoid drag-editing them in Studio.\n  ⚠ [compositions/group_w1.html] overlapping_gsap_tweens: GSAP tweens overlap on \"__unresolved__\" for opacity, y between 0.00s and 0.32s.\n    Fix: Shorten the earlier tween, move the later tween, or add `overwrite: \"auto\"`.\n  ⚠ [compositions/group_w1.html] overlapping_gsap_tweens: GSAP tweens overlap on \"__unresolved__\" for opacity between 0.00s and 0.18s.\n    Fix: Shorten the earlier tween, move the later tween, or add `overwrite: \"auto\"`.\n  ⚠ [compositions/group_w1.html] overlapping_gsap_tweens: GSAP tweens overlap on \"__unresolved__\" for y between 0.00s and 0.30s.\n    Fix: Shorten the earlier tween, move the later tween, or add `overwrite: \"auto\"`.\n  ⚠ [compositions/group_w1.html] gsap_studio_edit_blocked: GSAP tweens target \"#s1-hero-number\", \"#s1-pin\", \"#s1-tear-fragment\", \".s1-scribble\", \"#g1-term-card\", \"#s2-counter-card\", \"#s2-scribble\", \"#s2-zoom-outer\", \"#s2-zoom-inner\", \"#s3-scribble\", \"#s1-wire-wrap\", \"#s1-stage\", \"#s2-stamp-stack\", \"#s3-step-col\", \"#s3-arrow-head\" in a registered timeline. Studio cannot save drag/resize edits to these elements — the runtime skips write-back for any element that appears in a registered window.__timelines timeline.\n    Fix: The hyperframes runtime registers timelines automatically. Do not add a manual window.__timelines script unless GSAP intentionally controls element positions. For initial visibility states, use CSS (e.g. opacity:0) instead of gsap.set(). If GSAP must own these elements' positions, avoid drag-editing them in Studio.\n  ⚠ [compositions/group_w1.html] composition_file_too_large: This HTML composition file has 385 lines. Smaller sub-compositions are easier to read, iterate on, and diff.\n    Fix: Split this sub-composition further into smaller .html files, then mount them from the parent with data-composition-src so each file stays small enough to inspect, revise, and validate independently.\n  ⚠ [compositions/scene_4.html] gsap_studio_edit_blocked: GSAP tweens target \"#s4-stat\", \".s4-stat-suffix\", \"#s4-glyph-stage\", \".s4-eyebrow\", \"#s4-glass-ring\", \"#s4-glass-handle\", \"#s4-arrow-shaft\", \"#s4-arrow-head\", \"#s4-supporting-line\" in a registered timeline. Studio cannot save drag/resize edits to these elements — the runtime skips write-back for any element that appears in a registered window.__timelines timeline.\n    Fix: The hyperframes runtime registers timelines automatically. Do not add a manual window.__timelines script unless GSAP intentionally controls element positions. For initial visibility states, use CSS (e.g. opacity:0) instead of gsap.set(). If GSAP must own these elements' positions, avoid drag-editing them in Studio.\n  ⚠ [compositions/scene_5.html] gsap_studio_edit_blocked: GSAP tweens target \"#s5-card-wrap\", \"#s5-pin\", \"#s5-cta\", \"#s5-attribution\", \"#s5-wireframe\", \"#s5-card\" in a registered timeline. Studio cannot save drag/resize edits to these elements — the runtime skips write-back for any element that appears in a registered window.__timelines timeline.\n    Fix: The hyperframes runtime registers timelines automatically. Do not add a manual window.__timelines script unless GSAP intentionally controls element positions. For initial visibility states, use CSS (e.g. opacity:0) instead of gsap.set(). If GSAP must own these elements' positions, avoid drag-editing them in Studio.\n\n◇  0 error(s), 8 warning(s)\n"
+    },
+    "validate": {
+      "ok": true,
+      "exit_code": 0,
+      "duration_s": 6.86,
+      "errors": null,
+      "warnings": null,
+      "info": null,
+      "output_tail": "◆  Validating ada-compliance-explainer in headless Chrome\n◇  No console errors · 85 text elements pass WCAG AA\n"
+    },
+    "inspect": {
+      "ok": false,
+      "exit_code": 1,
+      "duration_s": 5.04,
+      "errors": 1,
+      "warnings": 7,
+      "info": 0,
+      "output_tail": "◆  Inspecting layout for ada-compliance-explainer (18 timeline samples)\n\n  ✗ t=15.12-18.68s (3 samples) text_occluded #s2-zoom-inner inside #s3-step-1 \"TERM 02 ADA compliance\" — Text is hidden beneath an opaque element.\n        Fix: Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.\n  ⚠ t=0.89-2.67s (2 samples) content_overlap div.s1-gap-zone inside div.s2-stamp-row \"1 in 4\" — Two text blocks overlap and may render unreadable.\n        Fix: Give each block its own zone, or mark intentional layering with data-layout-allow-overlap.\n  ⚠ t=0.89-4.45s (3 samples) content_overlap #s2-zoom-inner inside #s3-step-col \"TERM 02 ADA compliance\" — Two text blocks overlap and may render unreadable.\n        Fix: Give each block its own zone, or mark intentional layering with data-layout-allow-overlap.\n  ⚠ t=4.45s content_overlap #s1-hero-number inside div.s2-stamp-row \"1 in 4\" — Two text blocks overlap and may render unreadable.\n        Fix: Give each block its own zone, or mark intentional layering with data-layout-allow-overlap.\n  ⚠ t=6.23-9.78s (3 samples) content_overlap #g1-term-eyebrow inside #s3-step-col \"TERM 02\" — Two text blocks overlap and may render unreadable.\n        Fix: Give each block its own zone, or mark intentional layering with data-layout-allow-overlap.\n  ⚠ t=6.23-13.34s (5 samples) content_overlap #g1-term-title inside #s3-step-col \"ADA compliance\" — Two text blocks overlap and may render unreadable.\n        Fix: Give each block its own zone, or mark intentional layering with data-layout-allow-overlap.\n  ⚠ t=15.12-18.68s (3 samples) content_overlap #s2-zoom-inner inside h3.s3-step-title \"TERM 02 ADA compliance\" — Two text blocks overlap and may render unreadable.\n        Fix: Give each block its own zone, or mark intentional layering with data-layout-allow-overlap.\n  ⚠ t=15.12-18.68s (3 samples) content_overlap #s2-zoom-inner inside #s3-scribble \"TERM 02 ADA compliance\" — Two text blocks overlap and may render unreadable.\n        Fix: Give each block its own zone, or mark intentional layering with data-layout-allow-overlap.\n\n◇  1 error(s), 7 warning(s), 0 info(s)\n"
+    }
+  },
+  "bgm": {
+    "enabled": false,
+    "path": null,
+    "ready": false,
+    "status_file": null,
+    "status": "disabled",
+    "provider": null,
+    "mode": null,
+    "log": null,
+    "pid": null,
+    "target_duration_s": null,
+    "seed_duration_s": null,
+    "loop_count": null,
+    "message": "No BGM path."
+  },
+  "overlap": {
+    "status": "ok",
+    "canvas": {
+      "width": 1920,
+      "height": 1080
+    },
+    "probe_ratios": [
+      0.4,
+      0.7,
+      0.92
+    ],
+    "min_overlap_px": 4,
+    "scenes_scanned": 2,
+    "scenes_skipped": 3,
+    "scenes_no_timeline": 2,
+    "violations": [],
+    "transients": []
+  },
+  "caption_keepout": {
+    "enabled": false,
+    "canvas_height_px": 1080,
+    "caption_band_top_y": 900,
+    "fail_threshold_bottom_px": 180,
+    "suggested_min_bottom_px": 200,
+    "scenes_scanned": 0,
+    "violations": []
+  },
+  "anomalies": [],
+  "preflight_clean": false,
+  "deterministic_fixes_applied": [],
+  "snapshot_times_s": [
+    3.019,
+    4.528,
+    5.433,
+    6.037,
+    9.792,
+    11.669,
+    12.795,
+    13.546,
+    16.672,
+    20.097,
+    22.805,
+    26.113,
+    28.917,
+    30.469,
+    31.4
+  ],
+  "total_duration_s": 32.021,
+  "scenes": [
+    {
+      "scene_id": "scene_1",
+      "start_s": 0,
+      "duration_s": 6.037,
+      "midpoint_s": 3.019,
+      "high_risk_extras_s": [
+        4.528,
+        5.433
+      ],
+      "high_risk": true,
+      "effects": [
+        "svg-path-draw",
+        "scale-swap-transition"
+      ]
+    },
+    {
+      "scene_id": "scene_2",
+      "start_s": 6.037,
+      "duration_s": 7.509,
+      "midpoint_s": 9.792,
+      "high_risk_extras_s": [
+        11.669,
+        12.795
+      ],
+      "high_risk": true,
+      "effects": [
+        "coordinate-target-zoom",
+        "counting-dynamic-scale"
+      ]
+    },
+    {
+      "scene_id": "scene_3",
+      "start_s": 13.546,
+      "duration_s": 6.251,
+      "midpoint_s": 16.672,
+      "high_risk_extras_s": [],
+      "high_risk": false,
+      "effects": [
+        "svg-icon-enrichment",
+        "dynamic-content-sequencing"
+      ]
+    },
+    {
+      "scene_id": "scene_4",
+      "start_s": 19.797,
+      "duration_s": 6.016,
+      "midpoint_s": 22.805,
+      "high_risk_extras_s": [],
+      "high_risk": false,
+      "effects": [
+        "svg-path-draw",
+        "counting-dynamic-scale"
+      ]
+    },
+    {
+      "scene_id": "scene_5",
+      "start_s": 25.813,
+      "duration_s": 6.208,
+      "midpoint_s": 28.917,
+      "high_risk_extras_s": [
+        30.469,
+        31.4
+      ],
+      "high_risk": true,
+      "effects": [
+        "card-morph-anchor",
+        "press-release-spring"
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "from": "group_w1",
+      "to": "scene_4",
+      "from_scene": "scene_3",
+      "to_scene": "scene_4",
+      "type": "blur-crossfade",
+      "direction": null,
+      "duration_s": 0.6,
+      "tier": "b",
+      "seam_mid_s": 20.097
+    },
+    {
+      "from": "scene_4",
+      "to": "scene_5",
+      "from_scene": "scene_4",
+      "to_scene": "scene_5",
+      "type": "blur-crossfade",
+      "direction": null,
+      "duration_s": 0.6,
+      "tier": "b",
+      "seam_mid_s": 26.113
+    }
+  ],
+  "internal_seams": [
+    {
+      "from_scene": "scene_1",
+      "to_scene": "scene_2",
+      "visual_id": "group_w1",
+      "worker_id": "w1",
+      "seam_s": 6.037,
+      "local_time_s": 6.037
+    },
+    {
+      "from_scene": "scene_2",
+      "to_scene": "scene_3",
+      "visual_id": "group_w1",
+      "worker_id": "w1",
+      "seam_s": 13.546,
+      "local_time_s": 13.546
+    }
+  ]
+}

@@ -1,0 +1,343 @@
+<template id="scene_4-template">
+  <div id="root" class="scene_4-root" data-composition-id="scene_4" data-width="1920" data-height="1080" data-duration="6.016" style="position:relative; width:1920px; height:1080px; overflow:hidden;">
+    <style>
+      @font-face {
+        font-family: 'Space Grotesk';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('../public/fonts/space-grotesk-400.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'Space Grotesk';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url('../public/fonts/space-grotesk-700.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'DM Mono';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('../public/fonts/dm-mono-400.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'DM Mono';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url('../public/fonts/dm-mono-500.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'Caveat';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('../public/fonts/caveat-400.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'Caveat';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url('../public/fonts/caveat-700.woff2') format('woff2');
+      }
+      /* Root — pin-and-paper warm canvas, identical across the film. */
+      #root {
+        background: var(--canvas);
+        font-family: 'Space Grotesk', sans-serif;
+      }
+      #root *,
+      #root *::before,
+      #root *::after {
+        box-sizing: border-box;
+      }
+
+      /* Paper grain — full-bleed ambient atmosphere, identical low density every scene. */
+      .s4-grain {
+        position: absolute;
+        inset: 0;
+        background-image: var(--paper-grain);
+        opacity: 0.5;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .s4-content {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+      }
+
+      .s4-eyebrow {
+        position: absolute;
+        top: 70px;
+        left: var(--pad-edge);
+        display: inline-block;
+        font-family: 'DM Mono', monospace;
+        font-weight: 500;
+        font-size: 26px;
+        line-height: 1;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--brand-primary);
+        padding: 6px 0;
+      }
+
+      /* Centered hero glyph stage — arrow rising through a magnifying-glass outline. */
+      .s4-glyph-stage {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 560px;
+        height: 560px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .s4-glyph {
+        width: 480px;
+        height: 480px;
+        overflow: visible;
+      }
+
+      .s4-glyph path {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .s4-glass-path {
+        stroke: var(--ink);
+        stroke-width: 10;
+      }
+
+      .s4-arrow-path {
+        stroke: var(--brand-secondary);
+        stroke-width: 14;
+      }
+
+      /* Supporting display line beneath the glyph — restrained, 3:1 under glyph footprint. */
+      .s4-supporting {
+        position: absolute;
+        top: calc(50% + 300px);
+        left: 50%;
+        transform: translate(-50%, 0);
+        width: 640px;
+        text-align: center;
+      }
+
+      .s4-supporting-line {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        font-size: 44px;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        color: var(--brand-primary);
+        margin: 0;
+      }
+
+      /* Stat counter accent — lower-right of the glyph, scaled-down stat-counter pattern. */
+      .s4-stat {
+        position: absolute;
+        top: 640px;
+        left: 1230px;
+        width: 360px;
+        background: var(--surface-cream);
+        border: var(--border-hairline);
+        border-radius: var(--radius-card);
+        box-shadow: var(--shadow-pin-compact);
+        padding: 22px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        color: var(--brand-primary);
+      }
+
+      .s4-stat-num {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        font-size: 64px;
+        line-height: 0.9;
+        letter-spacing: -0.03em;
+        font-variant-numeric: tabular-nums;
+        color: var(--brand-primary);
+      }
+
+      .s4-stat-suffix {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 800;
+        font-size: 30px;
+        color: var(--brand-secondary);
+        display: inline-block;
+        margin-left: 4px;
+      }
+
+      .s4-stat-label {
+        font-family: 'DM Mono', monospace;
+        font-weight: 500;
+        font-size: 18px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--brand-primary);
+        opacity: 0.75;
+        margin: 4px 0 0;
+      }
+    </style>
+
+    <div class="s4-grain"></div>
+
+    <div class="s4-content">
+      <span class="s4-eyebrow">RESULT 04</span>
+
+      <div class="s4-glyph-stage" id="s4-glyph-stage" data-layout-role="primary" data-layout-act="glyph">
+        <svg class="s4-glyph" id="s4-glyph" viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg">
+          <!-- Magnifying glass outline: ring + handle -->
+          <circle id="s4-glass-ring" class="s4-glass-path" cx="220" cy="210" r="130" style="transform-origin: 220px 210px; transform: rotate(-90deg);" />
+          <path id="s4-glass-handle" class="s4-glass-path" d="M 316 306 L 400 392" />
+          <!-- Upward arrow rising through the glass, gold accent stroke -->
+          <path id="s4-arrow-shaft" class="s4-arrow-path" d="M 220 320 L 220 110" />
+          <path id="s4-arrow-head" class="s4-arrow-path" d="M 168 162 L 220 100 L 272 162" />
+        </svg>
+      </div>
+
+      <div class="s4-supporting" data-layout-role="supporting">
+        <p class="s4-supporting-line" id="s4-supporting-line">Better for every visitor</p>
+      </div>
+
+      <div class="s4-stat" id="s4-stat" data-layout-role="supporting" data-layout-act="counter">
+        <div class="s4-stat-num"><span id="s4-stat-value">0</span><span class="s4-stat-suffix" id="s4-stat-suffix">%</span></div>
+        <p class="s4-stat-label">Search visibility lift</p>
+      </div>
+    </div>
+
+    <script>
+      const EASE = {
+        entry: "power2.out",
+        emphasis: "power3.out",
+        exit: "power2.in",
+        drift: "sine.inOut",
+      };
+      const DUR = {
+        snap: 0.18,
+        med: 0.5,
+        slow: 0.95,
+      };
+
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // Initial hidden states (gsap.set, not CSS opacity:0) — seek-safe.
+      gsap.set(["#s4-supporting-line", ".s4-eyebrow"], { opacity: 0, y: 16 });
+      gsap.set("#s4-stat", { opacity: 0, y: 18 });
+      gsap.set(".s4-stat-suffix", { opacity: 0, y: 14 });
+      gsap.set("#s4-glyph-stage", { scale: 0.92, opacity: 0 });
+
+      // Measure SVG path lengths and prime dash patterns for draw-on.
+      const glyphPaths = document.querySelectorAll("#s4-glyph path, #s4-glyph circle");
+      glyphPaths.forEach((p) => {
+        const len = p.getTotalLength();
+        p.style.strokeDasharray = `${len}`;
+        p.style.strokeDashoffset = `${len}`;
+      });
+
+      // Timing constants (single correlated beat: arrow draw + counter count-up).
+      const EYEBROW_AT = 0.1;
+      const STAGE_IN_AT = 0.25;
+      const GLASS_RING_AT = 0.5;
+      const GLASS_RING_DUR = 0.6;
+      const GLASS_HANDLE_AT = 0.95;
+      const GLASS_HANDLE_DUR = 0.3;
+      const ARROW_START = 1.15;
+      const ARROW_SHAFT_DUR = 0.7;
+      const ARROW_HEAD_AT = ARROW_START + ARROW_SHAFT_DUR * 0.7;
+      const ARROW_HEAD_DUR = 0.3;
+      const COUNT_DUR = ARROW_SHAFT_DUR + 0.3;
+      const SUFFIX_AT = ARROW_START + COUNT_DUR;
+      const SUFFIX_DUR = 0.4;
+      const SUPPORTING_AT = ARROW_START + COUNT_DUR + 0.15;
+      const STAT_IN_AT = ARROW_START + 0.1;
+      const BREATHE_AT = SUPPORTING_AT + 0.6;
+
+      // Eyebrow chrome.
+      tl.to(".s4-eyebrow", { opacity: 1, y: 0, duration: DUR.med, ease: EASE.entry }, EYEBROW_AT);
+
+      // Macro: slow dolly-in culminating on the glyph (stage scale + fade).
+      tl.to(
+        "#s4-glyph-stage",
+        { opacity: 1, scale: 1, duration: DUR.slow, ease: EASE.entry },
+        STAGE_IN_AT,
+      );
+
+      // svg-path-draw: magnifying glass ring + handle draw in first.
+      tl.to(
+        "#s4-glass-ring",
+        { strokeDashoffset: 0, duration: GLASS_RING_DUR, ease: "power2.out" },
+        GLASS_RING_AT,
+      );
+      tl.to(
+        "#s4-glass-handle",
+        { strokeDashoffset: 0, duration: GLASS_HANDLE_DUR, ease: "power2.out" },
+        GLASS_HANDLE_AT,
+      );
+
+      // svg-path-draw: arrow rises through the glass (gold accent), synced to counting-dynamic-scale below — one correlated beat.
+      tl.to(
+        "#s4-arrow-shaft",
+        { strokeDashoffset: 0, duration: ARROW_SHAFT_DUR, ease: "none" },
+        ARROW_START,
+      );
+      tl.to(
+        "#s4-arrow-head",
+        { strokeDashoffset: 0, duration: ARROW_HEAD_DUR, ease: "power2.out" },
+        ARROW_HEAD_AT,
+      );
+
+      // Stat counter card enters alongside the arrow's rise.
+      tl.to("#s4-stat", { opacity: 1, y: 0, duration: DUR.med, ease: EASE.entry }, STAT_IN_AT);
+
+      // counting-dynamic-scale: count-up synced to the same arrow-rise beat.
+      const counterEl = document.getElementById("s4-stat-value");
+      const counterState = { value: 0, fontSize: 38 };
+      tl.to(
+        counterState,
+        {
+          value: 47,
+          fontSize: 64,
+          duration: COUNT_DUR,
+          ease: "power3.out",
+          onUpdate: () => {
+            counterEl.textContent = Math.round(counterState.value).toLocaleString();
+            counterEl.style.fontSize = `${counterState.fontSize}px`;
+          },
+        },
+        ARROW_START,
+      );
+      tl.to(
+        ".s4-stat-suffix",
+        { opacity: 1, y: 0, duration: SUFFIX_DUR, ease: "power1.out" },
+        SUFFIX_AT,
+      );
+
+      // Supporting display line settles beneath the glyph after the count lands.
+      tl.to(
+        "#s4-supporting-line",
+        { opacity: 1, y: 0, duration: DUR.med, ease: EASE.entry },
+        SUPPORTING_AT,
+      );
+
+      // Glyph holds with subtle multiplicative breathing (±1-2%) as the sole live element once settled.
+      tl.to(
+        "#s4-glyph-stage",
+        { scale: 1.015, duration: 2.0, ease: EASE.drift, yoyo: true, repeat: 1 },
+        BREATHE_AT,
+      );
+
+      window.__timelines["scene_4"] = tl;
+    </script>
+  </div>
+</template>

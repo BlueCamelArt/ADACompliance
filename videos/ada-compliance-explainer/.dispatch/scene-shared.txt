@@ -1,0 +1,113 @@
+## Film direction
+**Palette system:** 60-30-10 on the pin-and-paper native paper base. 60% warm paper canvas (`--canvas`/`--surface-paper` family) — the same warm yellow paper from scene 1 to scene 5, no per-scene drift. 30% hairline + repeated canvas layering (no `--surface` tier exists, so cards use `--anchor-cream` surfaces plus `--border-hairline` rules instead of a fake middle gray). 10% accent reserved for the current focal element only: `--brand-accent` (red) marks risk/urgency beats (demand letters, CTA stamp), `--brand-secondary` (gold) marks the resolution/benefit beats (SEO arrow, audit value). Ink is `--ink` (the brand-primary blue) throughout, doubling as print-like ink on paper. Decorative tints (`--deco-1..4`) appear only as sparse single-dot accents on pinned cards, never as backgrounds. No mesh, no dual-radial swell, no gradients as backgrounds — paper grain (`paper-grain-overlay`) is the only atmosphere, present in every scene at low, consistent density.
+
+**Type roles:** Three-voice system per `voice.md`. Display = hero headlines / DOM keywords, Space Grotesk 700, tight negative tracking, sentence case (never uppercase). Mono = eyebrow chrome / source tags / stamps, DM Mono uppercase with wide tracking. Caveat hand-script = marginal scribble-notes (sentence case, conversational, `pp-underline` for emphasis) and step numerals (hand-drawn 1/2/3, never numeral fonts). Body copy on cards stays in Space Grotesk sentence case, never Caveat. Hierarchy stacks size + weight + case + spacing across every scene (hero word 3:1 over supporting copy minimum).
+
+**Motion defaults + budget:** One macro move per scene (slow drift or push, `EASE.entry`/`power2.out` family from `easings.js`), at most 1-2 secondary live elements (the focal pin/card breathing, or one scribble write-on), everything else rests. Default ambient amplitude: Y ±2-3px, scale ±1-2%, rotation ±0.3-0.8°, 2.5-4s cycles — reach for the higher end only on scene 1 (short, single hero, no competitors) and scene 5 (climax stamp slam). Entries use `EASE.entry`/`DUR.med`; emphasis beats (stamps, pins, reveals) use `EASE.emphasis`/`DUR.med` with confident but non-bouncy settle (no `back.out`/elastic/bounce per system rule — paper settles, it doesn't bounce). Exits use `EASE.exit` at ~75% of entry length. Pin/stamp illustrations rotate within the tokenized tilt values (`--tilt-pin -10deg`, `--tilt-stamp -4deg`) on entry and never counter-rotate to 0°.
+
+**Ambient system:** `paper-grain-overlay` is full-bleed and present in every scene at identical low density (background layer, exempt from caption-band rule). No additional ambient texture (no scanlines, no halftone, no architectural grid) — the grain is the only atmosphere, per preset rule.
+
+**Stillness allocation:** `stillness-before-climax` (0.3-0.75s) is scheduled in exactly 2 scenes: Scene 1 (the tear pauses fractionally before the page visibly incompletes — letting "locking them out" land) and Scene 5 (the FREE AUDIT card holds suspended a beat before the pin slams down, ahead of the CTA line landing). No other scene uses this beat.
+
+**Film negative list:** no nav bars/browser chrome/scrollbars (no interface reconstruction is called for by this script), no generic color-block/sphere/ribbon decoration, no floating bokeh, no purple-to-blue AI gradient, no mesh/dual-radial-swell backgrounds, no slide/wipe/zoom-style scene transitions (paper aesthetic forbids them — cross-dissolve only), no `back.out`/elastic/bounce easing anywhere, no pure black/white (ink and paper both use the tokenized off-tones).
+
+**Transition vocabulary (2-3 max, repeated):** `cut-the-curve` is the default break-transition (scene 1→2, scene 4→5) realized within the system as a quiet cross-dissolve (per pin-and-paper's "scene transitions are short cross-dissolves; never slide/wipe/zoom" rule — direction-alternation is suppressed in favor of the preset's dissolve-only vocabulary). `morph` (Tier-A, doesn't count toward the cap) carries the two `continue` seams: scene 2→3 (term card unfolds into icon stack) and scene 3→4 (icons merge into the arrow+magnifying-glass glyph), both using `card-morph-anchor`.
+
+**Visual register mix + asset coverage:** All five scenes are faceless invented graphics (assetCandidates is `[]` throughout) — kinetic typography + hand-drawn diagram glyphs native to the pin-and-paper system (pinned cards, stamps, process steps, scribble notes). Registers used: Scene 1 = diagram (torn wireframe). Scene 2 = typographic term-card (stamp + pinned-card). Scene 3 = diagram/data-viz (three stacked process-step icons). Scene 4 = diagram (merged arrow + magnifying glass glyph) + data-counter accent. Scene 5 = typographic CTA (stamp + pinned-card). At least 3 distinct composition templates are used across the film (Centered, Rule-of-Thirds, Asymmetric) satisfying the "3+ templates across 5 scenes" requirement.
+## Tokens/easings/voice
+:root {
+  --brand-primary:   #1F3A8A;
+  --brand-secondary: #C9A66B;
+  --brand-tertiary:  #000000;
+  --brand-accent:    #C2342B;
+  --brand-costume:   #F8F1D6;
+  --ink:             #1F3A8A;
+  --canvas:          #EFE56A;
+  --brand-gradient:  linear-gradient(135deg, #1F3A8A 0%, #C9A66B 50%, #C2342B 100%);
+  --deco-1:          #F7CB46;
+  --deco-2:          #99E885;
+  --deco-3:          #C0F7FE;
+  --deco-4:          #FE90E8;
+  --font-display:    'Space Grotesk', system-ui, sans-serif;
+  --font-body:       'Space Grotesk', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-mono:       'DM Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --anchor-paper-yellow: #efe56a; /* saturated cadmium yellow — the page */
+  --anchor-cream: #f8f1d6; /* off-white ivory — the cards */
+  --surface-paper: color-mix(in srgb, var(--brand-primary) 6%, var(--anchor-paper-yellow));
+  --surface-paper-2: color-mix(
+  in srgb,
+  var(--brand-primary) 4%,
+  color-mix(in srgb, var(--anchor-paper-yellow) 70%, white)
+);
+  --surface-paper-3: color-mix(
+  in srgb,
+  var(--brand-primary) 8%,
+  color-mix(in srgb, var(--anchor-paper-yellow) 85%, black 8%)
+);
+  --surface-cream: color-mix(in srgb, var(--brand-primary) 4%, var(--anchor-cream));
+  --shadow-pin-compact: 4px 5px 0 0 var(--brand-primary);
+  --shadow-pin-standard: 5px 6px 0 0 var(--brand-primary);
+  --shadow-pin-hero: 8px 9px 0 0 var(--brand-primary);
+  --border-hairline: 1.5px solid var(--brand-primary);
+  --border-dashed: 1.5px dashed color-mix(in srgb, var(--brand-primary) 45%, transparent);
+  --border-stamp: 3px solid var(--brand-accent);
+  --radius-card: 4px;
+  --radius-pill: 999px;
+  --pad-edge: 64px;
+  --pad-top: 110px;
+  --pad-bottom: 90px;
+  --card-pad: 28px;
+  --card-pad-lg: 36px 28px 28px;
+  --gap-card-sm: 22px;
+  --gap-card-md: 28px;
+  --gap-card-lg: 32px;
+  --tilt-pin: -10deg;
+  --tilt-pin-alt: 14deg;
+  --tilt-card-askew: 0.9deg;
+  --tilt-scribble: -2deg;
+  --tilt-stamp: -4deg;
+  --paper-grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.5  0 0 0 0 0.45  0 0 0 0 0.2  0 0 0 .25 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+const EASE = {
+  entry: "power2.out", // soft arrival, no overshoot — paper settling onto the page
+  emphasis: "power3.out", // a touch more authority on pin-reveal / stamp-slam beats
+  exit: "power2.in", // calm departure, no acceleration spike
+  drift: "sine.inOut", // ambient pin / scribble tilt drift
+};
+const DUR = {
+  snap: 0.18,
+  med: 0.5,
+  slow: 0.95,
+};
+// RULE: never back.out / elastic / bounce — the field-notebook register is
+//       quiet and considered. Overshoot breaks the "paper settling" feel.
+// RULE: pin illustrations and stamps may rotate within ±2° on entry — never
+//       counter-rotate to 0°. The off-axis tilt is the system's identity.
+// RULE: scene transitions are short cross-dissolves (DUR.med). NEVER slide,
+//       wipe, or zoom — they read as digital chrome and break the paper aesthetic.
+// RULE: scribble entries should write-on (clip-path reveal left→right) at
+//       DUR.med with EASE.entry. Don't fade — fade is for printed type.
+# Voice register: pin-and-paper
+
+## From the site (DNA)
+- Tone: direct
+- Heading style: Sentence case
+
+## Transform recipe
+
+Take the brand's product description / value prop. Transform with:
+
+1. Hero headlines: 2–5 words, mixed case (NOT uppercase), Space Grotesk 700 with negative letter-spacing. Period optional — the cover behaves like a book title.
+2. Top-chrome lockups, dates, source attributions: DM Mono UPPERCASE with 0.12–0.18em tracking. Terse, indexical — pretend it's a catalog-card tag.
+3. Stamps: UPPERCASE DM Mono, 1–2 words ("CONFIDENTIAL", "RECEIVED", "DRAFT 04"). Always rotated −4°.
+4. Marginal notes (Caveat scribble): sentence case, 4–10 words, conversational. This is the "me" voice — write as if annotating someone else's document. Use `<span class="pp-underline">word</span>` for hand-drawn underline emphasis.
+5. Step numerals: Caveat hand-script (1, 2, 3 — not "Step 1"). The script numeral is the system's ordering voice; never substitute a numeric font.
+6. Card bodies: Space Grotesk sentence case, terse, full sentences. Never set body in Caveat — the script is for marginal notes, never paragraphs.
+
+**Example:**
+
+- IN: `Figma helps teams design products collaboratively in real time`
+- OUT: hero=`Designed together.` / chip=`FIELD REPORT 04` / stamp=`RECEIVED` / margin-note=`finally — one canvas, everyone home`
+
+> Phase 4b scene workers: apply to DOM text only (headline / chip / button copy).
+> Phase 2 narrator scripts are TTS-bound — do NOT uppercase or strip articles.
