@@ -1,0 +1,42 @@
+{
+  "tts_provider": "kokoro",
+  "voice_id": "am_michael",
+  "bgm_provider": "musicgen",
+  "bgm_enabled": true,
+  "bgm_path": "assets/bgm.wav",
+  "bgm_pending": true,
+  "bgm_log": "/tmp/hf-audio-zJxS1k/bgm-1782107249284.log",
+  "bgm_pid": 21787,
+  "bgm_mode": "detached-seed-loop",
+  "bgm_target_duration_s": 32.021,
+  "bgm_seed_duration_s": 28,
+  "bgm_loop_count": 2,
+  "total_duration_s": 32.021,
+  "scenes": {
+    "scene_1": {
+      "voicePath": "assets/voice/scene_1.wav",
+      "voiceDuration": 6.037,
+      "wordsPath": ""
+    },
+    "scene_2": {
+      "voicePath": "assets/voice/scene_2.wav",
+      "voiceDuration": 7.509,
+      "wordsPath": ""
+    },
+    "scene_3": {
+      "voicePath": "assets/voice/scene_3.wav",
+      "voiceDuration": 6.251,
+      "wordsPath": ""
+    },
+    "scene_4": {
+      "voicePath": "assets/voice/scene_4.wav",
+      "voiceDuration": 6.016,
+      "wordsPath": ""
+    },
+    "scene_5": {
+      "voicePath": "assets/voice/scene_5.wav",
+      "voiceDuration": 6.208,
+      "wordsPath": ""
+    }
+  }
+}

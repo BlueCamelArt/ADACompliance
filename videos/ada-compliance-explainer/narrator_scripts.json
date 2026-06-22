@@ -1,0 +1,106 @@
+{
+  "project": "ADA Website Compliance Explainer",
+  "narrativeArchetype": "concept-explainer with listicle",
+  "stylePreset": "pin-and-paper",
+  "orientation": "landscape",
+  "emotionalArc": "Curiosity about who gets left out shifts into recognition of real risk, then settles into clarity that accessibility is simply good, durable business practice.",
+  "scenes": [
+    {
+      "sceneNumber": 1,
+      "sceneName": "The Invisible Visitor",
+      "transition": {
+        "continuity": "break",
+        "intent": "cut",
+        "description": "Open on a hand-drawn website wireframe on yellow paper; a quarter of the page tears away or fades, hinting someone can't get in."
+      },
+      "narrativeIntent": {
+        "type": "hook",
+        "narrativeRole": "Opens the curiosity gap: who is silently excluded by an inaccessible site",
+        "keyMessage": "1 in 4 Americans has a disability that can block them from using a typical website.",
+        "persuasion": "Shocking statistic",
+        "emotionalBeat": "Curiosity and surprise"
+      },
+      "assetCandidates": [],
+      "script": "1 in 4 Americans lives with a disability. Is your website quietly locking them out?",
+      "estimatedDuration": "5s"
+    },
+    {
+      "sceneNumber": 2,
+      "sceneName": "More Than a Checkbox",
+      "transition": {
+        "continuity": "break",
+        "intent": "zoom",
+        "description": "Push through the torn wireframe into a single labeled term card reading 'ADA Compliance' inked on notebook paper."
+      },
+      "narrativeIntent": {
+        "type": "product_intro",
+        "narrativeRole": "Names the concept and reframes it as risk plus opportunity, not red tape",
+        "keyMessage": "ADA compliance means your site is usable by everyone, and ignoring it carries real legal risk.",
+        "persuasion": "Frame-then-fill",
+        "emotionalBeat": "Intrigue and clarity"
+      },
+      "assetCandidates": [],
+      "script": "That's <brand>ADA compliance</brand> — and demand letters over inaccessible sites are surging, even for well-meaning businesses.",
+      "estimatedDuration": "6s"
+    },
+    {
+      "sceneNumber": 3,
+      "sceneName": "What Accessible Looks Like",
+      "transition": {
+        "continuity": "continue",
+        "intent": "morph",
+        "sharedMotif": "the term card",
+        "description": "The term card unfolds into three quick hand-drawn icons stacking up: clear nav arrow, readable text lines, structured page blocks."
+      },
+      "narrativeIntent": {
+        "type": "feature_showcase",
+        "narrativeRole": "Demonstrates the concrete traits of an accessible site in rapid succession",
+        "keyMessage": "Clear navigation, readable text, and structured pages make a site accessible.",
+        "persuasion": "Rule of three",
+        "emotionalBeat": "Comprehension and momentum"
+      },
+      "assetCandidates": [],
+      "script": "Clear navigation. Readable text. Well-structured pages. That's accessibility in practice.",
+      "estimatedDuration": "5s"
+    },
+    {
+      "sceneNumber": 4,
+      "sceneName": "Good for Everyone",
+      "transition": {
+        "continuity": "continue",
+        "intent": "morph",
+        "sharedMotif": "the stacked icons",
+        "description": "The three icons merge into a single upward arrow over a magnifying glass, signaling SEO and visitor experience both rising."
+      },
+      "narrativeIntent": {
+        "type": "benefit_highlight",
+        "narrativeRole": "Lands the 'so what': accessibility benefits every visitor, not just those with disabilities",
+        "keyMessage": "Accessible design also boosts SEO and the experience for every visitor.",
+        "persuasion": "Generalization",
+        "emotionalBeat": "Confidence and conviction"
+      },
+      "assetCandidates": [],
+      "script": "Accessible sites aren't just safer — they're better for every single visitor, and for SEO.",
+      "estimatedDuration": "6s"
+    },
+    {
+      "sceneNumber": 5,
+      "sceneName": "Know Where You Stand",
+      "transition": {
+        "continuity": "break",
+        "intent": "slide",
+        "description": "Slide in a stamped 'FREE AUDIT' notecard from Business Design Innovations, pinned over the now-complete wireframe."
+      },
+      "narrativeIntent": {
+        "type": "cta",
+        "narrativeRole": "Closes with a low-friction next step before risk becomes urgent",
+        "keyMessage": "A free audit shows exactly where your site stands before a demand letter forces the question.",
+        "persuasion": "Stakes / consequence",
+        "emotionalBeat": "Resolve and inevitability"
+      },
+      "assetCandidates": [],
+      "script": "<cta>Don't wait for a demand letter. Claim your free ADA audit from Business Design Innovations today.</cta>",
+      "estimatedDuration": "6s"
+    }
+  ]
+}
