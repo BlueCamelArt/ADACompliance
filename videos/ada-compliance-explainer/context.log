@@ -8,3 +8,10 @@ Scenes: 5, total ~28s
 ## Phase 3: visual-design [done 2026-06-22T05:50:01Z]
 Scenes: 5
 Notes: pin-and-paper faceless plan — torn wireframe hook, term-card morph chain into icon-stack into rising arrow glyph, FREE AUDIT stamp CTA close; cut-the-curve + morph transitions, stillness-before-climax on scenes 1 and 5, audio_meta durations used (scene 2 diverged >10% from estimate).
+
+## Phase 4c: finalize [done 2026-06-22T06:20:16Z]
+Gates: lint ok (0 errors, 8 pre-existing non-blocking warnings) / validate ok (0 console errors, 85/85 WCAG-AA text elements pass) / inspect ok strict (0 errors, 5 warnings — down from 1 error/7 warnings) / overlap ok (0 violations, 2 scenes probed)
+Lean pass: 7 contact-sheet tiles scanned (0 escalated) — blank-panel/cut-text/contrast/cramped/internal-seams eye-checked once; seam tile at 13.5s and process-step tile at 16.7s confirmed clean post-fix
+Fixes in place: compositions/group_w1.html — added exit tween fading #s2-zoom-outer to opacity:0 at S3-0.4 (same beat as #g1-term-card/#s2-stamp-stack/#s2-scribble exits), so the zoom-pushed term-card wrapper (#s2-zoom-inner) no longer occludes #s3-step-1/#s3-step-col text after scene 2 ends. Fixed the inspect hard error (text_occluded #s2-zoom-inner inside #s3-step-1, t=15.12-18.68s). Remaining inspect warnings are continue-seam handoff overlaps (#s1-hero-number/#s1-gap-zone vs #s2-stamp-row, #g1-term-eyebrow/#g1-term-title vs #s3-step-col) — pre-existing, intentional per spec's "card carries across" continuity, left as-is per contract (warnings, not errors).
+BGM: disabled (No BGM path. — MusicGen network-blocked in this sandbox; voice narration + impact-bass-1.mp3 SFX cue only, per upstream decision; not re-attempted)
+Render: renders/video.mp4 (7.59 MB / 7958570 bytes, 32.033s vs expected 32.021s [drift 0.012s], quality=high)
