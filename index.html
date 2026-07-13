@@ -1,0 +1,812 @@
+<!-- Business Design Innovations — ai automations, teacher consultant-->
+
+<div id="bdi-lp">
+<style>
+/* ================= Scoped Reset & Tokens (all !important) ================= */
+#bdi-lp, #bdi-lp *, #bdi-lp *::before, #bdi-lp *::after {
+  box-sizing: border-box !important;
+}
+#bdi-lp {
+  --bdi-teal: #0f7a86 !important;
+  --bdi-teal-dark: #0a5f68 !important;
+  --bdi-teal-soft: #e6f4f6 !important;
+  --bdi-teal-soft-2: #f2fafb !important;
+  --bdi-ink: #1f2a37 !important;
+  --bdi-body: #4b5563 !important;
+  --bdi-muted: #6b7280 !important;
+  --bdi-line: #e5e7eb !important;
+  --bdi-bg: #ffffff !important;
+  --bdi-soft: #f7fafb !important;
+  --bdi-white: #ffffff !important;
+  --bdi-radius: 14px !important;
+  --bdi-shadow-sm: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px -12px rgba(15,122,134,.18) !important;
+  --bdi-shadow-lg: 0 2px 4px rgba(0,0,0,.05), 0 24px 48px -18px rgba(15,122,134,.25) !important;
+
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  color: var(--bdi-ink) !important;
+  line-height: 1.6 !important;
+  font-size: 16px !important;
+  background: var(--bdi-bg) !important;
+  -webkit-font-smoothing: antialiased !important;
+  scroll-behavior: smooth !important;
+}
+#bdi-lp h1, #bdi-lp h2, #bdi-lp h3, #bdi-lp h4 {
+  font-family: "Fraunces", Georgia, "Times New Roman", serif !important;
+  color: var(--bdi-ink) !important;
+  letter-spacing: -0.02em !important;
+  margin: 0 !important;
+  line-height: 1.15 !important;
+  font-weight: 600 !important;
+}
+#bdi-lp p { margin: 0 !important; color: var(--bdi-body) !important; }
+#bdi-lp a { color: var(--bdi-teal) !important; text-decoration: none !important; }
+#bdi-lp ul, #bdi-lp ol { margin: 0 !important; padding: 0 !important; list-style: none !important; }
+#bdi-lp img { max-width: 100% !important; height: auto !important; display: block !important; }
+#bdi-lp button { font-family: inherit !important; cursor: pointer !important; border: 0 !important; }
+
+/* ================= Layout ================= */
+#bdi-lp .bdi-wrap { max-width: 1180px !important; margin: 0 auto !important; padding: 0 20px !important; }
+#bdi-lp .bdi-section { padding: 72px 0 !important; background: var(--bdi-bg) !important; }
+#bdi-lp .bdi-section.bdi-soft { background: var(--bdi-soft) !important; }
+#bdi-lp .bdi-head { max-width: 720px !important; margin: 0 auto 44px !important; text-align: center !important; }
+#bdi-lp .bdi-eyebrow {
+  display: inline-block !important; font-size: 12px !important; font-weight: 700 !important;
+  letter-spacing: .18em !important; text-transform: uppercase !important; color: var(--bdi-teal) !important;
+}
+#bdi-lp .bdi-h2 { font-size: clamp(26px, 3.4vw, 36px) !important; margin-top: 12px !important; }
+#bdi-lp .bdi-intro { margin-top: 14px !important; font-size: 17px !important; color: var(--bdi-body) !important; }
+
+/* Grid */
+#bdi-lp .bdi-grid { display: grid !important; gap: 20px !important; }
+#bdi-lp .bdi-g-2 { grid-template-columns: 1fr !important; }
+#bdi-lp .bdi-g-3 { grid-template-columns: 1fr !important; }
+#bdi-lp .bdi-g-4 { grid-template-columns: 1fr !important; }
+@media (min-width: 640px){
+  #bdi-lp .bdi-g-2 { grid-template-columns: repeat(2, 1fr) !important; }
+  #bdi-lp .bdi-g-3 { grid-template-columns: repeat(2, 1fr) !important; }
+  #bdi-lp .bdi-g-4 { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (min-width: 960px){
+  #bdi-lp .bdi-g-3 { grid-template-columns: repeat(3, 1fr) !important; }
+  #bdi-lp .bdi-g-4 { grid-template-columns: repeat(4, 1fr) !important; }
+}
+
+/* Buttons */
+#bdi-lp .bdi-btn {
+  display: inline-flex !important; align-items: center !important; justify-content: center !important;
+  gap: 8px !important; padding: 14px 22px !important; border-radius: 12px !important;
+  font-weight: 600 !important; font-size: 15px !important; line-height: 1 !important;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease !important;
+  text-decoration: none !important;
+}
+#bdi-lp .bdi-btn-primary {
+  background: linear-gradient(135deg, #0f7a86, #0a5f68) !important;
+  color: #fff !important; box-shadow: var(--bdi-shadow-sm) !important;
+}
+#bdi-lp .bdi-btn-primary:hover { transform: translateY(-1px) !important; box-shadow: var(--bdi-shadow-lg) !important; color: #fff !important; }
+#bdi-lp .bdi-btn-outline {
+  background: #fff !important; color: var(--bdi-teal) !important;
+  border: 1px solid var(--bdi-teal) !important;
+}
+#bdi-lp .bdi-btn-outline:hover { background: var(--bdi-teal-soft) !important; }
+#bdi-lp .bdi-btn-soft {
+  background: var(--bdi-teal-soft) !important; color: var(--bdi-teal-dark) !important;
+}
+#bdi-lp .bdi-btn-soft:hover { background: #d6ebee !important; }
+#bdi-lp .bdi-btn-block { width: 100% !important; }
+
+/* Cards */
+#bdi-lp .bdi-card {
+  background: #fff !important; border: 1px solid var(--bdi-line) !important;
+  border-radius: var(--bdi-radius) !important; padding: 24px !important;
+  transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease !important;
+  display: flex !important; flex-direction: column !important; height: 100% !important;
+}
+#bdi-lp .bdi-card:hover { border-color: rgba(15,122,134,.35) !important; box-shadow: var(--bdi-shadow-sm) !important; }
+#bdi-lp .bdi-card h3 { font-size: 19px !important; margin-top: 14px !important; }
+#bdi-lp .bdi-card p { margin-top: 8px !important; font-size: 14.5px !important; flex: 1 !important; }
+#bdi-lp .bdi-icon {
+  width: 46px !important; height: 46px !important; border-radius: 12px !important;
+  background: var(--bdi-teal-soft) !important; color: var(--bdi-teal) !important;
+  display: inline-flex !important; align-items: center !important; justify-content: center !important;
+  font-size: 22px !important; font-weight: 700 !important;
+}
+#bdi-lp .bdi-icon-solid {
+  background: linear-gradient(135deg, #0f7a86, #0a5f68) !important; color: #fff !important;
+}
+
+/* Chips / pills */
+#bdi-lp .bdi-chip {
+  display: inline-flex !important; align-items: center !important; gap: 6px !important;
+  padding: 6px 12px !important; border-radius: 999px !important; font-size: 12.5px !important;
+  font-weight: 600 !important; background: #fff !important; color: var(--bdi-teal) !important;
+  border: 1px solid rgba(15,122,134,.25) !important;
+}
+#bdi-lp .bdi-chips { display: flex !important; flex-wrap: wrap !important; gap: 8px !important; }
+
+/* ================= Image Placeholders ================= */
+#bdi-lp .bdi-img-placeholder {
+  position: relative !important;
+  width: 100% !important;
+  border-radius: 24px !important;
+  overflow: hidden !important;
+  box-shadow: var(--bdi-shadow-lg) !important;
+  background: #f0f7f8 !important;
+  border: 2px dashed rgba(15,122,134,.35) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  color: var(--bdi-teal) !important;
+  text-align: center !important;
+  padding: 32px !important;
+}
+#bdi-lp .bdi-img-placeholder img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  border-radius: 22px !important;
+}
+/* shown only when no real <img> is present — hides itself when img loads */
+#bdi-lp .bdi-img-placeholder .bdi-ph-label {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 8px !important;
+  pointer-events: none !important;
+}
+#bdi-lp .bdi-img-placeholder .bdi-ph-icon {
+  font-size: 40px !important;
+  line-height: 1 !important;
+  opacity: .55 !important;
+}
+#bdi-lp .bdi-img-placeholder .bdi-ph-text {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: var(--bdi-teal-dark) !important;
+  opacity: .7 !important;
+  font-family: "Inter", sans-serif !important;
+}
+#bdi-lp .bdi-img-placeholder .bdi-ph-sub {
+  font-size: 11.5px !important;
+  color: var(--bdi-muted) !important;
+  font-family: "Inter", sans-serif !important;
+}
+/* Hero placeholder aspect ratio */
+#bdi-lp .bdi-hero-img-placeholder { aspect-ratio: 4 / 3 !important; }
+/* About placeholder aspect ratio */
+#bdi-lp .bdi-about-img-placeholder { aspect-ratio: 4 / 5 !important; max-width: 380px !important; margin: 0 auto !important; }
+
+/* ================= Hero ================= */
+#bdi-lp .bdi-hero {
+  position: relative !important;
+  padding: 72px 0 !important;
+  background:
+    radial-gradient(ellipse 80% 60% at 80% 10%, rgba(15,122,134,.14), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 10% 90%, rgba(15,122,134,.10), transparent 60%),
+    linear-gradient(180deg, #ffffff 0%, #f2fafb 100%) !important;
+  overflow: hidden !important;
+}
+#bdi-lp .bdi-hero-grid { display: grid !important; gap: 40px !important; grid-template-columns: 1fr !important; align-items: center !important; }
+@media (min-width: 960px){ #bdi-lp .bdi-hero-grid { grid-template-columns: 1.05fr .95fr !important; } }
+#bdi-lp .bdi-hero h1 {
+  font-size: clamp(32px, 5.4vw, 56px) !important;
+  margin-top: 18px !important;
+}
+#bdi-lp .bdi-hero p.bdi-lead {
+  margin-top: 18px !important; font-size: 18px !important; color: var(--bdi-body) !important; max-width: 560px !important;
+}
+#bdi-lp .bdi-hero .bdi-cta-row { margin-top: 26px !important; display: flex !important; flex-wrap: wrap !important; gap: 12px !important; }
+#bdi-lp .bdi-hero .bdi-tag {
+  display: inline-flex !important; align-items: center !important; gap: 8px !important;
+  padding: 6px 12px !important; border-radius: 999px !important;
+  background: var(--bdi-teal-soft) !important; color: var(--bdi-teal-dark) !important;
+  font-size: 12.5px !important; font-weight: 700 !important;
+  border: 1px solid rgba(15,122,134,.2) !important;
+}
+
+/* ================= Topic pill list ================= */
+#bdi-lp .bdi-topic {
+  display: flex !important; align-items: center !important; gap: 12px !important;
+  background: #fff !important; border: 1px solid var(--bdi-line) !important;
+  border-radius: 12px !important; padding: 12px 14px !important;
+}
+#bdi-lp .bdi-topic .bdi-icon { width: 38px !important; height: 38px !important; font-size: 16px !important; border-radius: 10px !important; }
+#bdi-lp .bdi-topic span.bdi-lbl { font-size: 14.5px !important; font-weight: 600 !important; color: var(--bdi-ink) !important; }
+
+/* ================= Who / Outcomes ================= */
+#bdi-lp .bdi-two-col { display: grid !important; gap: 40px !important; grid-template-columns: 1fr !important; align-items: center !important; }
+@media (min-width: 960px){ #bdi-lp .bdi-two-col { grid-template-columns: 1fr 1fr !important; } }
+#bdi-lp .bdi-check-list { display: grid !important; gap: 10px !important; }
+#bdi-lp .bdi-check-list li {
+  display: flex !important; align-items: flex-start !important; gap: 10px !important;
+  background: #fff !important; border: 1px solid var(--bdi-line) !important;
+  border-radius: 12px !important; padding: 12px 14px !important; font-size: 14.5px !important;
+  font-weight: 500 !important; color: var(--bdi-ink) !important;
+}
+#bdi-lp .bdi-check-list li::before {
+  content: "✓" !important; display: inline-flex !important; align-items: center !important; justify-content: center !important;
+  width: 22px !important; height: 22px !important; border-radius: 999px !important;
+  background: var(--bdi-teal) !important; color: #fff !important; font-size: 12px !important; font-weight: 700 !important;
+  flex: 0 0 22px !important;
+}
+
+/* Outcomes numbered */
+#bdi-lp .bdi-outcome {
+  display: flex !important; align-items: center !important; gap: 14px !important;
+  background: #fff !important; border: 1px solid var(--bdi-line) !important;
+  border-radius: 14px !important; padding: 18px !important;
+}
+#bdi-lp .bdi-outcome .bdi-num {
+  width: 42px !important; height: 42px !important; border-radius: 999px !important;
+  background: linear-gradient(135deg, #0f7a86, #0a5f68) !important; color: #fff !important;
+  display: inline-flex !important; align-items: center !important; justify-content: center !important;
+  font-weight: 700 !important; font-size: 13px !important; flex: 0 0 42px !important;
+}
+#bdi-lp .bdi-outcome p { font-size: 14.5px !important; font-weight: 600 !important; color: var(--bdi-ink) !important; }
+
+/* About */
+#bdi-lp .bdi-about-grid { display: grid !important; gap: 40px !important; grid-template-columns: 1fr !important; align-items: center !important; }
+@media (min-width: 960px){ #bdi-lp .bdi-about-grid { grid-template-columns: 2fr 3fr !important; } }
+#bdi-lp .bdi-cred-list { margin-top: 22px !important; display: grid !important; gap: 8px !important; grid-template-columns: 1fr !important; }
+@media (min-width: 640px){ #bdi-lp .bdi-cred-list { grid-template-columns: 1fr 1fr !important; } }
+#bdi-lp .bdi-cred-list li { font-size: 14px !important; color: var(--bdi-ink) !important; display: flex !important; gap: 8px !important; }
+#bdi-lp .bdi-cred-list li::before { content: "✓" !important; color: var(--bdi-teal) !important; font-weight: 700 !important; }
+
+/* Process */
+#bdi-lp .bdi-step { text-align: center !important; }
+#bdi-lp .bdi-step .bdi-step-num {
+  width: 64px !important; height: 64px !important; border-radius: 18px !important;
+  background: linear-gradient(135deg, #0f7a86, #0a5f68) !important; color: #fff !important;
+  display: inline-flex !important; align-items: center !important; justify-content: center !important;
+  font-weight: 700 !important; font-size: 20px !important; box-shadow: var(--bdi-shadow-lg) !important;
+}
+#bdi-lp .bdi-step h3 { margin-top: 18px !important; font-size: 18px !important; }
+#bdi-lp .bdi-step p { margin-top: 8px !important; font-size: 14.5px !important; }
+
+/* Testimonials */
+#bdi-lp .bdi-quote { font-size: 40px !important; line-height: 1 !important; color: var(--bdi-teal) !important; font-family: Georgia, serif !important; }
+#bdi-lp .bdi-t-author { display: flex !important; align-items: center !important; gap: 10px !important; margin-top: 18px !important; }
+#bdi-lp .bdi-t-author .bdi-avatar-sm {
+  width: 40px !important; height: 40px !important; border-radius: 999px !important;
+  background: var(--bdi-teal-soft) !important; color: var(--bdi-teal-dark) !important;
+  display: inline-flex !important; align-items: center !important; justify-content: center !important;
+  font-weight: 700 !important;
+}
+
+/* Pricing */
+#bdi-lp .bdi-plan { position: relative !important; }
+#bdi-lp .bdi-plan.bdi-featured { border-color: rgba(15,122,134,.5) !important; box-shadow: var(--bdi-shadow-lg) !important; }
+#bdi-lp .bdi-plan .bdi-badge {
+  position: absolute !important; top: -14px !important; left: 50% !important; transform: translateX(-50%) !important;
+  background: linear-gradient(135deg, #0f7a86, #0a5f68) !important; color: #fff !important;
+  padding: 6px 12px !important; border-radius: 999px !important; font-size: 11px !important;
+  font-weight: 700 !important; letter-spacing: .1em !important; text-transform: uppercase !important;
+}
+#bdi-lp .bdi-plan .bdi-feat { margin-top: 18px !important; display: grid !important; gap: 10px !important; flex: 1 !important; }
+#bdi-lp .bdi-plan .bdi-feat li { display: flex !important; gap: 8px !important; font-size: 14px !important; color: var(--bdi-ink) !important; }
+#bdi-lp .bdi-plan .bdi-feat li::before { content: "✓" !important; color: var(--bdi-teal) !important; font-weight: 700 !important; }
+#bdi-lp .bdi-plan .bdi-price { margin-top: 6px !important; font-size: 13.5px !important; color: var(--bdi-muted) !important; }
+
+/* FAQ */
+#bdi-lp .bdi-faq { max-width: 780px !important; margin: 0 auto !important; }
+#bdi-lp .bdi-faq details {
+  background: #fff !important; border: 1px solid var(--bdi-line) !important;
+  border-radius: 12px !important; padding: 16px 18px !important; margin-bottom: 10px !important;
+  box-shadow: var(--bdi-shadow-sm) !important;
+}
+#bdi-lp .bdi-faq summary {
+  cursor: pointer !important; font-weight: 600 !important; font-size: 15.5px !important;
+  color: var(--bdi-ink) !important; list-style: none !important;
+  display: flex !important; justify-content: space-between !important; align-items: center !important; gap: 12px !important;
+}
+#bdi-lp .bdi-faq summary::-webkit-details-marker { display: none !important; }
+#bdi-lp .bdi-faq summary::after {
+  content: "+" !important; color: var(--bdi-teal) !important; font-size: 22px !important; line-height: 1 !important;
+  transition: transform .2s ease !important;
+}
+#bdi-lp .bdi-faq details[open] summary::after { content: "–" !important; }
+#bdi-lp .bdi-faq details p { margin-top: 10px !important; font-size: 14.5px !important; color: var(--bdi-body) !important; }
+
+/* Contact */
+#bdi-lp .bdi-contact-wrap {
+  border-radius: 24px !important; background: #fff !important; overflow: hidden !important;
+  border: 1px solid var(--bdi-line) !important; box-shadow: var(--bdi-shadow-lg) !important;
+}
+#bdi-lp .bdi-contact-grid { display: grid !important; grid-template-columns: 1fr !important; }
+@media (min-width: 960px){ #bdi-lp .bdi-contact-grid { grid-template-columns: 2fr 3fr !important; } }
+#bdi-lp .bdi-contact-side {
+  background: linear-gradient(135deg, #0f7a86, #0a5f68) !important; color: #fff !important;
+  padding: 40px !important; position: relative !important; overflow: hidden !important;
+}
+#bdi-lp .bdi-contact-side h2 { color: #fff !important; font-size: 30px !important; margin-top: 10px !important; }
+#bdi-lp .bdi-contact-side p { color: rgba(255,255,255,.9) !important; margin-top: 12px !important; }
+#bdi-lp .bdi-contact-side .bdi-eyebrow { color: rgba(255,255,255,.85) !important; }
+#bdi-lp .bdi-contact-side .bdi-info { margin-top: 26px !important; display: grid !important; gap: 14px !important; font-size: 14px !important; }
+#bdi-lp .bdi-contact-side .bdi-info strong { display: block !important; font-size: 14.5px !important; color: #fff !important; }
+#bdi-lp .bdi-contact-side .bdi-info span { color: rgba(255,255,255,.85) !important; }
+#bdi-lp .bdi-contact-side .bdi-tags { margin-top: 26px !important; display: flex !important; flex-wrap: wrap !important; gap: 8px !important; }
+#bdi-lp .bdi-contact-side .bdi-tags span {
+  background: rgba(255,255,255,.18) !important; color: #fff !important;
+  padding: 5px 11px !important; border-radius: 999px !important; font-size: 12px !important; font-weight: 600 !important;
+}
+#bdi-lp .bdi-contact-form { padding: 40px !important; }
+#bdi-lp .bdi-form-row { display: grid !important; gap: 16px !important; grid-template-columns: 1fr !important; margin-bottom: 16px !important; }
+@media (min-width: 640px){
+  #bdi-lp .bdi-form-row.bdi-2 { grid-template-columns: 1fr 1fr !important; }
+  #bdi-lp .bdi-form-row.bdi-3 { grid-template-columns: 1fr 1fr 1fr !important; }
+}
+#bdi-lp .bdi-field label {
+  display: block !important; font-size: 13.5px !important; font-weight: 600 !important;
+  color: var(--bdi-ink) !important; margin-bottom: 6px !important;
+}
+#bdi-lp .bdi-field input,
+#bdi-lp .bdi-field select,
+#bdi-lp .bdi-field textarea {
+  width: 100% !important; padding: 11px 13px !important; font-size: 14.5px !important;
+  border: 1px solid var(--bdi-line) !important; border-radius: 10px !important;
+  background: #fff !important; color: var(--bdi-ink) !important; font-family: inherit !important;
+  transition: border-color .15s ease, box-shadow .15s ease !important;
+}
+#bdi-lp .bdi-field textarea { min-height: 110px !important; resize: vertical !important; }
+#bdi-lp .bdi-field input:focus,
+#bdi-lp .bdi-field select:focus,
+#bdi-lp .bdi-field textarea:focus {
+  outline: 0 !important; border-color: var(--bdi-teal) !important;
+  box-shadow: 0 0 0 3px rgba(15,122,134,.18) !important;
+}
+#bdi-lp .bdi-consent {
+  display: flex !important; align-items: flex-start !important; gap: 10px !important;
+  padding: 12px !important; background: var(--bdi-soft) !important; border-radius: 10px !important;
+  font-size: 13.5px !important; color: var(--bdi-body) !important; margin-bottom: 16px !important;
+}
+#bdi-lp .bdi-consent input { margin-top: 3px !important; accent-color: var(--bdi-teal) !important; }
+#bdi-lp .bdi-note { font-size: 12.5px !important; color: var(--bdi-muted) !important; margin-top: 14px !important; text-align: center !important; }
+</style>
+
+<!-- ================= HERO ================= -->
+<section id="bdi-home" class="bdi-hero">
+  <div class="bdi-wrap">
+    <div class="bdi-hero-grid">
+      <div>
+        <span class="bdi-tag">✨ AI Consultant · Trainer · Speaker</span>
+        <h1>Practical AI Help for Business Owners, Teams, and Organizations</h1>
+        <p class="bdi-lead">Learn how to use AI with confidence. Jennifer Aquino provides one-on-one consultations, beginner-friendly training, workshops, and speaking sessions designed around real business needs.</p>
+        <div class="bdi-cta-row">
+          <a href="#bdi-contact" class="bdi-btn bdi-btn-primary">Book an AI Consultation →</a>
+          <a href="#bdi-contact" class="bdi-btn bdi-btn-outline">Invite Jennifer to Speak</a>
+        </div>
+        <p style="margin-top:20px !important; font-size:14px !important; color:var(--bdi-muted) !important;">
+          ✓ Clear guidance. Practical tools. No confusing tech talk.
+        </p>
+      </div>
+
+      <!-- ═══ HERO PHOTO — replace src with your image URL ═══ -->
+      <div class="bdi-img-placeholder bdi-hero-img-placeholder">
+        <!--
+          TO ADD YOUR PHOTO:
+          Replace the placeholder below with an <img> tag, e.g.:
+          <img src="your-photo.jpg" alt="Jennifer Aquino — AI Consultant" />
+          Then delete the .bdi-ph-label div below.
+        -->
+        <div class="bdi-ph-label">
+          <span class="bdi-ph-icon">📷</span>
+          <span class="bdi-ph-text">Add your hero photo here</span>
+          <span class="bdi-ph-sub">Recommended: 800 × 600 px · JPG or PNG</span>
+        </div>
+      </div>
+      <!-- ═══════════════════════════════════════════════════ -->
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section id="bdi-consultations" class="bdi-section">
+  <div class="bdi-wrap">
+    <div class="bdi-head">
+      <span class="bdi-eyebrow">Services</span>
+      <h2 class="bdi-h2">How Jennifer Helps</h2>
+      <p class="bdi-intro">Four ways to bring practical AI to your business, team, or event.</p>
+    </div>
+    <div class="bdi-grid bdi-g-4">
+      <div class="bdi-card">
+        <span class="bdi-icon">💬</span>
+        <h3>AI Consultations</h3>
+        <p>Personalized one-on-one support to help you choose the right AI tools, improve your workflow, create content, save time, and solve business challenges.</p>
+        <a href="#bdi-contact" class="bdi-btn bdi-btn-soft bdi-btn-block" style="margin-top:18px !important;">Book a Consultation →</a>
+      </div>
+      <div class="bdi-card">
+        <span class="bdi-icon">👥</span>
+        <h3>AI Workshops</h3>
+        <p>Interactive workshops for business owners, nonprofit teams, networking groups, libraries, and community organizations.</p>
+        <a href="#bdi-contact" class="bdi-btn bdi-btn-soft bdi-btn-block" style="margin-top:18px !important;">Request a Workshop →</a>
+      </div>
+      <div class="bdi-card">
+        <span class="bdi-icon">🎓</span>
+        <h3>Team Training</h3>
+        <p>Beginner-friendly training designed around your team, industry, goals, and daily responsibilities.</p>
+        <a href="#bdi-contact" class="bdi-btn bdi-btn-soft bdi-btn-block" style="margin-top:18px !important;">Ask About Team Training →</a>
+      </div>
+      <div class="bdi-card">
+        <span class="bdi-icon">🎤</span>
+        <h3>Speaking Opportunities</h3>
+        <p>Practical and engaging presentations about AI, digital tools, marketing, websites, accessibility, and business growth.</p>
+        <a href="#bdi-contact" class="bdi-btn bdi-btn-soft bdi-btn-block" style="margin-top:18px !important;">Invite Jennifer to Speak →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONSULTATION TOPICS ================= -->
+<section class="bdi-section bdi-soft">
+  <div class="bdi-wrap">
+    <div class="bdi-head">
+      <span class="bdi-eyebrow">Consultations</span>
+      <h2 class="bdi-h2">Popular AI Consultation Topics</h2>
+      <p class="bdi-intro">A menu of practical, real-business topics we can tackle together.</p>
+    </div>
+    <div class="bdi-grid bdi-g-3">
+      <div class="bdi-topic"><span class="bdi-icon">🪄</span><span class="bdi-lbl">Choosing the right AI tools</span></div>
+      <div class="bdi-topic"><span class="bdi-icon">🤖</span><span class="bdi-lbl">Using ChatGPT for business</span></div>
+      <div class="bdi-topic"><span class="bdi-icon">📱</span><span class="bdi-lbl">Creating social media content</span></div>
+      <div class="bdi-topic"><span class="bdi-icon">✍️</span><span class="bdi-lbl">Writing emails and marketing copy</span></div>
+      <div class="bdi-topic"><span class="bdi-icon">🔀</span><span class="bdi-lbl">Building business systems and workflows</span></div>
+      <div class="bdi-topic"><span class="bdi-icon">🎧</span><span class="bdi-lbl">AI for customer service</span></div>
+      <div class="bdi-topic"><span class="bdi-icon">🔍</span><span class="bdi-lbl">AI for research and planning</span></div>
+      <div class="bdi-topic"><span class="bdi-icon">🌐</span><span class="bdi-lbl">AI for website content</span></div>
+      <div class="bdi-topic"><span class="bdi-icon">📍</span><span class="bdi-lbl">AI for SEO and local marketing</span></div>
+      <div class="bdi-topic"><span class="bdi-icon">🤝</span><span class="bdi-lbl">AI for nonprofits</span></div>
+      <div class="bdi-topic"><span class="bdi-icon">📋</span><span class="bdi-lbl">AI for administrative tasks</span></div>
+      <div class="bdi-topic"><span class="bdi-icon">⚡</span><span class="bdi-lbl">AI automations</span></div>
+      <div class="bdi-topic"><span class="bdi-icon">💡</span><span class="bdi-lbl">Prompts that produce better results</span></div>
+      <div class="bdi-topic"><span class="bdi-icon">🛡️</span><span class="bdi-lbl">AI safety and responsible use</span></div>
+      <div class="bdi-topic"><span class="bdi-icon">🚀</span><span class="bdi-lbl">Turning ideas into action plans</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WORKSHOP TOPICS ================= -->
+<section id="bdi-training" class="bdi-section">
+  <div class="bdi-wrap">
+    <div class="bdi-head">
+      <span class="bdi-eyebrow">Workshops & Speaking</span>
+      <h2 class="bdi-h2">Workshops and Speaking Topics</h2>
+      <p class="bdi-intro">Pick a topic or ask for a custom session tailored to your audience.</p>
+    </div>
+    <div class="bdi-grid bdi-g-3">
+      <div class="bdi-card"><span class="bdi-icon bdi-icon-solid">✨</span><h3>AI for Beginners</h3><p>A practical introduction to AI tools and how to use them safely and confidently.</p></div>
+      <div class="bdi-card"><span class="bdi-icon bdi-icon-solid">✨</span><h3>AI for Small Business Owners</h3><p>Learn how AI supports marketing, customer service, planning, content, and daily operations.</p></div>
+      <div class="bdi-card"><span class="bdi-icon bdi-icon-solid">✨</span><h3>ChatGPT for Business</h3><p>Learn how to write effective prompts and use ChatGPT for real business tasks.</p></div>
+      <div class="bdi-card"><span class="bdi-icon bdi-icon-solid">✨</span><h3>AI for Women Entrepreneurs</h3><p>A supportive session focused on helping women business owners use AI to save time and grow.</p></div>
+      <div class="bdi-card"><span class="bdi-icon bdi-icon-solid">✨</span><h3>AI for Nonprofits</h3><p>Learn how AI supports fundraising, grant research, volunteer communication, marketing, and program planning.</p></div>
+      <div class="bdi-card"><span class="bdi-icon bdi-icon-solid">✨</span><h3>AI and Digital Marketing</h3><p>Learn how AI supports social media, email marketing, SEO, content planning, and lead generation.</p></div>
+      <div class="bdi-card"><span class="bdi-icon bdi-icon-solid">✨</span><h3>AI Tools for Productivity</h3><p>Organize tasks, summarize information, create systems, and reduce repetitive work.</p></div>
+      <div class="bdi-card"><span class="bdi-icon bdi-icon-solid">✨</span><h3>Responsible AI Use</h3><p>Understand privacy, accuracy, copyright, verification, and safe AI practices.</p></div>
+      <div class="bdi-card"><span class="bdi-icon bdi-icon-solid">✨</span><h3>Custom Workshop</h3><p>Jennifer creates customized presentations and training sessions based on the audience, industry, and goals.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHO IT'S FOR ================= -->
+<section class="bdi-section bdi-soft">
+  <div class="bdi-wrap">
+    <div class="bdi-two-col">
+      <div>
+        <span class="bdi-eyebrow">Who It's For</span>
+        <h2 class="bdi-h2" style="margin-top:10px !important;">A strong fit for people who...</h2>
+        <p style="margin-top:14px !important; font-size:17px !important;">Whether you're a solo founder, a nonprofit team, or an organization looking for an AI speaker, Jennifer meets you where you are.</p>
+        <div class="bdi-chips" style="margin-top:20px !important;">
+          <span class="bdi-chip">Small business owners</span>
+          <span class="bdi-chip">Women entrepreneurs</span>
+          <span class="bdi-chip">Nonprofits</span>
+          <span class="bdi-chip">Community groups</span>
+          <span class="bdi-chip">Chambers of commerce</span>
+          <span class="bdi-chip">Libraries</span>
+          <span class="bdi-chip">Networking groups</span>
+          <span class="bdi-chip">Professional associations</span>
+        </div>
+      </div>
+      <ul class="bdi-check-list">
+        <li>Feel overwhelmed by AI</li>
+        <li>Do not know which AI tools to use</li>
+        <li>Want hands-on support</li>
+        <li>Need help writing better prompts</li>
+        <li>Want to save time</li>
+        <li>Want to improve their marketing</li>
+        <li>Need team training</li>
+        <li>Want a speaker who explains technology in simple language</li>
+        <li>Need practical examples instead of technical theory</li>
+        <li>Want AI systems designed around their business</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OUTCOMES ================= -->
+<section class="bdi-section">
+  <div class="bdi-wrap">
+    <div class="bdi-head">
+      <span class="bdi-eyebrow">Outcomes</span>
+      <h2 class="bdi-h2">What You Will Walk Away With</h2>
+      <p class="bdi-intro">Every session ends with practical, ready-to-use resources — not theory.</p>
+    </div>
+    <div class="bdi-grid bdi-g-3">
+      <div class="bdi-outcome"><span class="bdi-num">01</span><p>Clear next steps</p></div>
+      <div class="bdi-outcome"><span class="bdi-num">02</span><p>Recommended AI tools</p></div>
+      <div class="bdi-outcome"><span class="bdi-num">03</span><p>Custom prompts</p></div>
+      <div class="bdi-outcome"><span class="bdi-num">04</span><p>Practical workflows</p></div>
+      <div class="bdi-outcome"><span class="bdi-num">05</span><p>Templates and examples</p></div>
+      <div class="bdi-outcome"><span class="bdi-num">06</span><p>More confidence using AI</p></div>
+      <div class="bdi-outcome"><span class="bdi-num">07</span><p>Ideas for saving time</p></div>
+      <div class="bdi-outcome"><span class="bdi-num">08</span><p>Ways to improve marketing and communication</p></div>
+      <div class="bdi-outcome"><span class="bdi-num">09</span><p>A realistic action plan</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="bdi-about" class="bdi-section bdi-soft">
+  <div class="bdi-wrap">
+    <div class="bdi-about-grid">
+
+      <!-- ═══ ABOUT PHOTO — replace src with your image URL ═══ -->
+      <div class="bdi-img-placeholder bdi-about-img-placeholder">
+        <!--
+          TO ADD YOUR PHOTO:
+          Replace the placeholder below with an <img> tag, e.g.:
+          <img src="jennifer-aquino.jpg" alt="Jennifer Aquino" />
+          Then delete the .bdi-ph-label div below.
+        -->
+        <div class="bdi-ph-label">
+          <span class="bdi-ph-icon">🖼️</span>
+          <span class="bdi-ph-text">Add your headshot here</span>
+          <span class="bdi-ph-sub">Recommended: 760 × 950 px · JPG or PNG</span>
+        </div>
+      </div>
+      <!-- ═════════════════════════════════════════════════════ -->
+
+      <div>
+        <span class="bdi-eyebrow">About</span>
+        <h2 class="bdi-h2" style="margin-top:10px !important;">Meet Jennifer Aquino</h2>
+        <div style="margin-top:18px !important; display:grid !important; gap:14px !important;">
+          <p>Jennifer Aquino is the owner of Business Design Innovations and has more than 16 years of experience helping businesses with websites, digital marketing, accessibility, automation, and technology.</p>
+          <p>She teaches AI in a practical, beginner-friendly way. Her sessions focus on real tasks, clear explanations, and tools people can begin using right away.</p>
+          <p>Jennifer works with small business owners, women entrepreneurs, nonprofits, community organizations, and professional teams. Her teaching style is warm, patient, and focused on helping people feel confident with technology.</p>
+        </div>
+        <ul class="bdi-cred-list">
+          <li>16+ years of digital business experience</li>
+          <li>Website and digital marketing specialist</li>
+          <li>AI consultant and educator</li>
+          <li>ADA website accessibility specialist</li>
+          <li>Small business owner</li>
+          <li>Nonprofit board president</li>
+          <li>Community workshop facilitator</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FORMATS ================= -->
+<section id="bdi-speaking" class="bdi-section">
+  <div class="bdi-wrap">
+    <div class="bdi-head">
+      <span class="bdi-eyebrow">Formats</span>
+      <h2 class="bdi-h2">Speaking and Workshop Formats</h2>
+      <p class="bdi-intro">Choose the format that fits your audience, budget, and goals.</p>
+    </div>
+    <div class="bdi-grid bdi-g-4">
+      <div class="bdi-card"><span class="bdi-icon">🎙️</span><h3>Keynote Presentation</h3><p>Ideal for conferences, professional groups, and community events.</p></div>
+      <div class="bdi-card"><span class="bdi-icon">👥</span><h3>Interactive Workshop</h3><p>Hands-on training with demonstrations, exercises, and audience participation.</p></div>
+      <div class="bdi-card"><span class="bdi-icon">🏢</span><h3>Small Group Training</h3><p>Personalized sessions for teams, boards, business groups, and nonprofit staff.</p></div>
+      <div class="bdi-card"><span class="bdi-icon">🎥</span><h3>Virtual Training</h3><p>Live Zoom sessions for remote teams, organizations, and online communities.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section class="bdi-section bdi-soft">
+  <div class="bdi-wrap">
+    <div class="bdi-head">
+      <span class="bdi-eyebrow">Process</span>
+      <h2 class="bdi-h2">A Simple Three-Step Process</h2>
+      <p class="bdi-intro">From first hello to action plan — straightforward and supportive.</p>
+    </div>
+    <div class="bdi-grid bdi-g-3">
+      <div class="bdi-step"><div class="bdi-step-num">01</div><h3>Share Your Goals</h3><p>Tell Jennifer about your audience, business, event, or training needs.</p></div>
+      <div class="bdi-step"><div class="bdi-step-num">02</div><h3>Receive a Custom Recommendation</h3><p>Jennifer will recommend a consultation, workshop, training session, or speaking format.</p></div>
+      <div class="bdi-step"><div class="bdi-step-num">03</div><h3>Learn and Take Action</h3><p>Receive practical guidance, examples, resources, and clear next steps.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="bdi-section">
+  <div class="bdi-wrap">
+    <div class="bdi-head">
+      <span class="bdi-eyebrow">Kind Words</span>
+      <h2 class="bdi-h2">What People Are Saying</h2>
+      <p class="bdi-intro" style="font-size:13px !important; color:var(--bdi-muted) !important;">Sample testimonials shown until verified reviews are added.</p>
+    </div>
+    <div class="bdi-grid bdi-g-3">
+      <div class="bdi-card">
+        <div class="bdi-quote">"</div>
+        <p style="margin-top:6px !important;">Jennifer made AI easy to understand. I left the session with tools and ideas I could use in my business immediately.</p>
+        <div class="bdi-t-author"><span class="bdi-avatar-sm">S</span><div><div style="font-weight:700 !important; font-size:13px !important;">Sample Attendee</div><div style="font-size:12.5px !important; color:var(--bdi-muted) !important;">Workshop participant</div></div></div>
+      </div>
+      <div class="bdi-card">
+        <div class="bdi-quote">"</div>
+        <p style="margin-top:6px !important;">The training was practical, clear, and engaging. Our team felt more confident using AI after one session.</p>
+        <div class="bdi-t-author"><span class="bdi-avatar-sm">S</span><div><div style="font-weight:700 !important; font-size:13px !important;">Sample Attendee</div><div style="font-size:12.5px !important; color:var(--bdi-muted) !important;">Workshop participant</div></div></div>
+      </div>
+      <div class="bdi-card">
+        <div class="bdi-quote">"</div>
+        <p style="margin-top:6px !important;">Jennifer explains technology in a way that feels approachable. She answered questions patiently and gave us useful examples.</p>
+        <div class="bdi-t-author"><span class="bdi-avatar-sm">S</span><div><div style="font-weight:700 !important; font-size:13px !important;">Sample Attendee</div><div style="font-size:12.5px !important; color:var(--bdi-muted) !important;">Workshop participant</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRICING ================= -->
+<section class="bdi-section bdi-soft">
+  <div class="bdi-wrap">
+    <div class="bdi-head">
+      <span class="bdi-eyebrow">Consultation Options</span>
+      <h2 class="bdi-h2">Choose the Right Level of Support</h2>
+      <p class="bdi-intro">Every engagement is customized. Contact for pricing details.</p>
+    </div>
+    <div class="bdi-grid bdi-g-3">
+      <div class="bdi-card bdi-plan">
+        <h3>AI Clarity Session</h3>
+        <div class="bdi-price">Contact for pricing</div>
+        <ul class="bdi-feat">
+          <li>One-on-one consultation</li>
+          <li>Review business goals</li>
+          <li>Recommend AI tools</li>
+          <li>Create a starting action plan</li>
+        </ul>
+        <a href="#bdi-contact" class="bdi-btn bdi-btn-outline bdi-btn-block" style="margin-top:22px !important;">Book a Session</a>
+      </div>
+      <div class="bdi-card bdi-plan bdi-featured">
+        <span class="bdi-badge">Most Popular</span>
+        <h3>AI Strategy Consultation</h3>
+        <div class="bdi-price">Contact for pricing</div>
+        <ul class="bdi-feat">
+          <li>Review current business processes</li>
+          <li>Identify time-saving opportunities</li>
+          <li>Develop custom prompts and workflows</li>
+          <li>Create a personalized AI plan</li>
+        </ul>
+        <a href="#bdi-contact" class="bdi-btn bdi-btn-primary bdi-btn-block" style="margin-top:22px !important;">Request Details</a>
+      </div>
+      <div class="bdi-card bdi-plan">
+        <h3>Custom Training or Speaking</h3>
+        <div class="bdi-price">Contact for pricing</div>
+        <ul class="bdi-feat">
+          <li>Custom presentation or workshop</li>
+          <li>Virtual or in-person options</li>
+          <li>Content tailored to the audience</li>
+          <li>Resources and follow-up materials</li>
+        </ul>
+        <a href="#bdi-contact" class="bdi-btn bdi-btn-outline bdi-btn-block" style="margin-top:22px !important;">Request a Quote</a>
+      </div>
+    </div>
+    <p class="bdi-note">Prefer to schedule directly? A Calendly booking link will live here.</p>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="bdi-faq" class="bdi-section">
+  <div class="bdi-wrap">
+    <div class="bdi-head">
+      <span class="bdi-eyebrow">FAQ</span>
+      <h2 class="bdi-h2">Questions People Ask</h2>
+      <p class="bdi-intro">Everything you need to know before we connect.</p>
+    </div>
+    <div class="bdi-faq">
+      <details><summary>Do I need AI experience?</summary><p>No. Sessions are designed for beginners and people who want practical support.</p></details>
+      <details><summary>Do you offer virtual consultations?</summary><p>Yes. Consultations and training sessions are available through Zoom.</p></details>
+      <details><summary>Do you offer in-person workshops?</summary><p>Yes. In-person opportunities are available in San Clemente, Orange County, and surrounding areas. Travel requests are also considered.</p></details>
+      <details><summary>Can you create a custom presentation?</summary><p>Yes. Speaking and training sessions can be customized for the audience, industry, event, and learning goals.</p></details>
+      <details><summary>Do you train nonprofit organizations?</summary><p>Yes. Training is available for nonprofit staff, board members, volunteers, and community groups.</p></details>
+      <details><summary>What AI tools do you teach?</summary><p>Training may include ChatGPT, Claude, Gemini, Perplexity, NotebookLM, Canva AI, and other tools based on the audience's needs.</p></details>
+      <details><summary>Can you help my business set up AI systems?</summary><p>Yes. Consultations can include tool recommendations, prompts, content workflows, marketing support, and automation planning.</p></details>
+      <details><summary>Do you provide follow-up resources?</summary><p>Yes. Depending on the service, participants may receive prompts, worksheets, tool recommendations, or action steps.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="bdi-contact" class="bdi-section bdi-soft">
+  <div class="bdi-wrap">
+    <div class="bdi-contact-wrap">
+      <div class="bdi-contact-grid">
+        <div class="bdi-contact-side">
+          <span class="bdi-eyebrow">Let's Talk</span>
+          <h2>Ready to Make AI Easier?</h2>
+          <p>Get practical AI support designed around your business, organization, team, or event.</p>
+          <div class="bdi-info">
+            <div>📍 <strong>San Clemente, California</strong><span>Serving Orange County and remote clients</span></div>
+            <div>📅 <strong>Booking</strong><span></span></div><a href="tel:9497954721">949-795-4721</a>
+          </div>
+          <div class="bdi-tags">
+            <span>AI Consultation</span><span>Workshops</span><span>Speaking</span>
+          </div>
+        </div>
+        <div class="bdi-contact-form">
+          <!-- Replace action with your form handler, WPForms shortcode, Contact Form 7, or Fluent Forms. -->
+          <form method="post" action="#" novalidate>
+            <div class="bdi-form-row bdi-2">
+              <div class="bdi-field"><label for="bdi-name">Name *</label><input id="bdi-name" name="name" type="text" required autocomplete="name"></div>
+              <div class="bdi-field"><label for="bdi-org">Business or organization</label><input id="bdi-org" name="organization" type="text" autocomplete="organization"></div>
+            </div>
+            <div class="bdi-form-row bdi-2">
+              <div class="bdi-field"><label for="bdi-email">Email *</label><input id="bdi-email" name="email" type="email" required autocomplete="email"></div>
+              <div class="bdi-field"><label for="bdi-phone">Phone</label><input id="bdi-phone" name="phone" type="tel" autocomplete="tel"></div>
+            </div>
+            <div class="bdi-form-row bdi-2">
+              <div class="bdi-field">
+                <label for="bdi-inquiry">Type of inquiry</label>
+                <select id="bdi-inquiry" name="inquiry">
+                  <option value="">Select one</option>
+                  <option value="consultation">AI Consultation</option>
+                  <option value="training">Team Training</option>
+                  <option value="workshop">Workshop</option>
+                  <option value="speaking">Speaking Opportunity</option>
+                  <option value="nonprofit">Nonprofit Training</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="bdi-field">
+                <label for="bdi-format">Preferred format</label>
+                <select id="bdi-format" name="format">
+                  <option value="">Select one</option>
+                  <option value="virtual">Virtual</option>
+                  <option value="in-person">In person</option>
+                  <option value="either">Open to either</option>
+                </select>
+              </div>
+            </div>
+            <div class="bdi-form-row bdi-3">
+              <div class="bdi-field"><label for="bdi-audience">Audience size</label><input id="bdi-audience" name="audience" type="text" inputmode="numeric" placeholder="e.g. 25"></div>
+              <div class="bdi-field"><label for="bdi-date">Preferred date</label><input id="bdi-date" name="date" type="date"></div>
+              <div class="bdi-field"><label for="bdi-budget">Budget range</label><input id="bdi-budget" name="budget" type="text" placeholder="Optional"></div>
+            </div>
+            <div class="bdi-form-row">
+              <div class="bdi-field"><label for="bdi-message">Message *</label><textarea id="bdi-message" name="message" required placeholder="Tell Jennifer a little about your goals or event."></textarea></div>
+            </div>
+            <label class="bdi-consent">
+              <input type="checkbox" name="consent" required>
+              <span>I agree to be contacted about this inquiry.</span>
+            </label>
+            <button type="submit" class="bdi-btn bdi-btn-primary">Send Inquiry →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Schema Markup ================= -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+  {"@type":"ProfessionalService","name":"Business Design Innovations","description":"AI consulting, training, workshops, and speaking for small businesses, nonprofits, and organizations.","areaServed":"Orange County, California","address":{"@type":"PostalAddress","addressLocality":"San Clemente","addressRegion":"CA","addressCountry":"US"},"founder":{"@type":"Person","name":"Jennifer Aquino"}},
+  {"@type":"Person","name":"Jennifer Aquino","jobTitle":"AI Consultant, Trainer and Speaker","worksFor":{"@type":"Organization","name":"Business Design Innovations"}},
+  {"@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Do I need AI experience?","acceptedAnswer":{"@type":"Answer","text":"No. Sessions are designed for beginners and people who want practical support."}},
+    {"@type":"Question","name":"Do you offer virtual consultations?","acceptedAnswer":{"@type":"Answer","text":"Yes. Consultations and training sessions are available through Zoom."}},
+    {"@type":"Question","name":"Do you offer in-person workshops?","acceptedAnswer":{"@type":"Answer","text":"Yes. In-person opportunities are available in San Clemente, Orange County, and surrounding areas."}},
+    {"@type":"Question","name":"Can you create a custom presentation?","acceptedAnswer":{"@type":"Answer","text":"Yes. Speaking and training sessions can be customized for the audience, industry, event, and learning goals."}},
+    {"@type":"Question","name":"Do you train nonprofit organizations?","acceptedAnswer":{"@type":"Answer","text":"Yes. Training is available for nonprofit staff, board members, volunteers, and community groups."}},
+    {"@type":"Question","name":"What AI tools do you teach?","acceptedAnswer":{"@type":"Answer","text":"Training may include ChatGPT, Claude, Gemini, Perplexity, NotebookLM, Canva AI, and others."}},
+    {"@type":"Question","name":"Can you help my business set up AI systems?","acceptedAnswer":{"@type":"Answer","text":"Yes. Consultations can include tool recommendations, prompts, content workflows, marketing support, and automation planning."}},
+    {"@type":"Question","name":"Do you provide follow-up resources?","acceptedAnswer":{"@type":"Answer","text":"Yes. Depending on the service, participants may receive prompts, worksheets, tool recommendations, or action steps."}}
+  ]}
+]}
+</script>
+</div>
+<!-- /Business Design Innovations landing block -->
